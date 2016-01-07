@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MvcPaging;
 
 namespace AccountSync.Controllers
 {
@@ -101,32 +100,7 @@ namespace AccountSync.Controllers
 
             return View("PasswordReseted", myAccount);
         }
-
-        public ActionResult AccountList(int? page)
-        {
-            IQueryable<ProxyAccountViewModel> accounts =db.GenProxyAccount.
-                Select(s => new ProxyAccountViewModel()
-                {
-                    UserID = s.chUserID,
-                    UserName = s.chUserName,
-                    DeptName = s.chDeptName,
-                    NoteID = s.chEMail,
-                    dtEndDate = s.dtEndDate
-                }).OrderBy(o=>o.DeptName);
-
-            int currentPage = page.HasValue ? page.Value - 1 : 0;
-            int defaultPageSize = 15;
-
-            return View(accounts.ToPagedList(currentPage,defaultPageSize));
-        }
     }
 
-    public partial class ProxyAccountViewModel
-    {
-        public string UserName { get; set; }
-        public string UserID { get; set; }
-        public string DeptName { get; set; }
-        public string NoteID { get; set; }
-        public DateTime? dtEndDate { get; set; }
-    }
+ 
 }

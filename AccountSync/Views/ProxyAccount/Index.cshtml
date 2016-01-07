@@ -1,21 +1,64 @@
-﻿@{
-    ViewBag.Title = "個人帳號查詢";
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model IPagedList<AccountSync.Models.ProxyAccountViewModel>
+
+@{
+    ViewBag.Title = "Index";
 }
 
-<h2>查詢首頁</h2>
+<h2>Index</h2>
 
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
 
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 
-@using (Html.BeginForm("Query", "ProxyAccount"))
-{
-    <h4>帳號：</h4>
-    @Html.TextBox("UserID")
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().DeptName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().NoteID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().dtEndDate)
+        </th>
+        <th></th>
+    </tr>
 
-    <input type="submit" name="query" value="查詢" />
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoteID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtEndDate)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
 
-}
-
-
-
-
-@Html.ActionLink("帳號總覽","AccountList")
+</table>

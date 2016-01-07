@@ -262,6 +262,7 @@
       <DependentUpon>DB_GEN.edmx</DependentUpon>
       <LastGenOutput>DB_GEN.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\icapsvr1.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -294,14 +295,15 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\MD5Test.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
-    <Content Include="Views\ProxyAccount\Index.cshtml" />
     <Content Include="Views\ProxyAccount\Query.cshtml" />
+    <Content Include="Views\ProxyAccount\QueryResult.cshtml" />
     <Content Include="Views\Shared\AccountNotFound.cshtml" />
     <Content Include="Views\ProxyAccount\ChangePassword.cshtml" />
     <Content Include="Views\Shared\PasswordInconfirm.cshtml" />
     <Content Include="Views\Shared\PasswordIncorrect.cshtml" />
     <Content Include="Views\Shared\PasswordChanged.cshtml" />
     <Content Include="Views\Shared\PasswordReseted.cshtml" />
+    <Content Include="Views\ProxyAccount\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

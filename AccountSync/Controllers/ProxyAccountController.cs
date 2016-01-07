@@ -3,15 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace AccountSync.Controllers
 {
     public class ProxyAccountController : Controller
     {
         Models.DB_GENEntities db = new Models.DB_GENEntities();
+        int pageSize = 15;
 
         // GET: ProxyAccount
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
+        {
+            int currentPage = page < 1 ? 1 : page;
+            var accounts = db.GenProxyAccount.OrderBy(o => o.chDeptName).Select(s => new Models.ProxyAccountViewModel()
+            {
+                DeptName = s.chDeptName,
+                dtEndDate = s.dtEndDate,
+                NoteID = s.chEMail,
+                UserID = s.chUserID,
+                UserName = s.chUserName
+            });
+            var pagedAccounts = accounts.ToPagedList(currentPage, pageSize);
+
+            return View(pagedAccounts);
+        }
+
+        public ActionResult Query()
         {
             return View();
         }
@@ -24,7 +42,7 @@ namespace AccountSync.Controllers
             {
                 return View("AccountNotFound");
             }
-            return View(myAccount);
+            return View("QueryResult",myAccount);
         }
 
         public ActionResult ChangePassword(string UserID)
@@ -102,5 +120,5 @@ namespace AccountSync.Controllers
         }
     }
 
- 
+
 }

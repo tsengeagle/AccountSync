@@ -1,89 +1,21 @@
-﻿@model AccountSync.Models.GenProxyAccount
-
-@{
-    ViewBag.Title = "查詢結果";
+﻿@{
+    ViewBag.Title = "個人帳號查詢";
 }
 
-<h2>查詢結果</h2>
+<h2>查詢首頁</h2>
 
-<div>
-    <h4>個人帳號查詢</h4>
-    <hr />
-    <dl class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.chUserName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.chUserName)
-        </dd>
+@using (Html.BeginForm("Query", "ProxyAccount"))
+{
+    <h4>帳號：</h4>
+    @Html.TextBox("UserID")
 
-        <dt>
-            @Html.DisplayNameFor(model => model.chDeptName)
-        </dt>
+    <input type="submit" name="query" value="查詢" />
 
-        <dd>
-            @Html.DisplayFor(model => model.chDeptName)
-        </dd>
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.chEMail)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.chEMail)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.chEndDate)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.chEndDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.dtEndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.dtEndDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.dtLastModified)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.dtLastModified)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.chXDataHosp)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.chXDataHosp)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.chUserType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.chUserType)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.chUserID }) |
-    @Html.ActionLink("Back to List", "Index")*@
-    @Html.ActionLink("修改密碼", "ChangePassword", new {UserID=Model.chUserID })
-    |
-    @Html.ActionLink("重置密碼", "ResetPassword", new { UserID=Model.chUserID})
-    <br />
-    @Html.ActionLink("回到首頁","Index")
-
-</p>
+@Html.ActionLink("帳號總覽","AccountList")

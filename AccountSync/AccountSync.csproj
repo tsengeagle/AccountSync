@@ -140,7 +140,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProxyAccountController.cs" />
     <Compile Include="Controllers\ResetPasswordViewModel.cs" />
-    <Compile Include="Controllers\UserAccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -294,14 +293,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\UserAccount\Index.cshtml" />
-    <Content Include="Views\UserAccount\Query.cshtml" />
-    <Content Include="Views\UserAccount\AccountNotFind.cshtml" />
-    <Content Include="Views\UserAccount\ResetPassword.cshtml" />
     <Content Include="Views\Home\MD5Test.cshtml" />
-    <Content Include="Views\UserAccount\PasswordIncorrect.cshtml" />
-    <Content Include="Views\UserAccount\PasswordChanged.cshtml" />
-    <Content Include="Views\UserAccount\PasswordReseted.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\ProxyAccount\Index.cshtml" />
     <Content Include="Views\ProxyAccount\Query.cshtml" />

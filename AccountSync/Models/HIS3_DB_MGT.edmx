@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HIS3_DB_MGTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TaxHmResourceAll">
+          <Key>
+            <PropertyRef Name="deSerialNo" />
+          </Key>
+          <Property Name="deSerialNo" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniversalID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastModified" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FORM" Type="varchar" MaxLength="50" />
+          <Property Name="fd_DutyNo" Type="varchar" MaxLength="50" />
+          <Property Name="fd_DutyType" Type="varchar" MaxLength="50" />
+          <Property Name="fd_OrgDeptFullName" Type="varchar" MaxLength="100" />
+          <Property Name="fd_OrgDeptNo" Type="varchar" MaxLength="50" />
+          <Property Name="fd_OrgMissionName" Type="varchar" MaxLength="100" />
+          <Property Name="fd_OrgMissionUniNo" Type="varchar" MaxLength="50" />
+          <Property Name="fd_OrgAffiliateName" Type="varchar" MaxLength="100" />
+          <Property Name="fd_OrgAffiliateUniNo" Type="varchar" MaxLength="50" />
+          <Property Name="fd_OrgDeptName1" Type="varchar" MaxLength="100" />
+          <Property Name="fd_OrgDeptName2" Type="varchar" MaxLength="100" />
+          <Property Name="fd_OrgDeptName3" Type="varchar" MaxLength="100" />
+          <Property Name="fd_OrgDeptName4" Type="varchar" MaxLength="100" />
+          <Property Name="fd_OrgDeptName5" Type="varchar" MaxLength="100" />
+          <Property Name="fd_OrgDeptNo1" Type="varchar" MaxLength="50" />
+          <Property Name="fd_OrgDeptNo2" Type="varchar" MaxLength="50" />
+          <Property Name="fd_OrgDeptNo3" Type="varchar" MaxLength="50" />
+          <Property Name="fd_OrgDeptNo4" Type="varchar" MaxLength="50" />
+          <Property Name="fd_OrgDeptNo5" Type="varchar" MaxLength="50" />
+          <Property Name="fd_OrgDeptCmpNo" Type="varchar" MaxLength="50" />
+          <Property Name="fd_OrgLevel" Type="varchar" MaxLength="50" />
+          <Property Name="fd_OrgDutyName" Type="varchar" MaxLength="100" />
+          <Property Name="fd_OrgDutyClass" Type="varchar" MaxLength="50" />
+          <Property Name="fd_OrgTitleName" Type="varchar" MaxLength="100" />
+          <Property Name="fd_OrgByWork" Type="varchar" MaxLength="100" />
+          <Property Name="fd_WrkDeptFullName" Type="varchar" MaxLength="100" />
+          <Property Name="fd_WrkDeptNo" Type="varchar" MaxLength="50" />
+          <Property Name="fd_WrkMissionName" Type="varchar" MaxLength="100" />
+          <Property Name="fd_WrkMissionUniNo" Type="varchar" MaxLength="50" />
+          <Property Name="fd_WrkAffiliateName" Type="varchar" MaxLength="100" />
+          <Property Name="fd_WrkAffiliateUniNo" Type="varchar" MaxLength="50" />
+          <Property Name="fd_WrkDeptName1" Type="varchar" MaxLength="100" />
+          <Property Name="fd_WrkDeptName2" Type="varchar" MaxLength="100" />
+          <Property Name="fd_WrkDeptName3" Type="varchar" MaxLength="100" />
+          <Property Name="fd_WrkDeptName4" Type="varchar" MaxLength="100" />
+          <Property Name="fd_WrkDeptName5" Type="varchar" MaxLength="100" />
+          <Property Name="fd_WrkDeptNo1" Type="varchar" MaxLength="50" />
+          <Property Name="fd_WrkDeptNo2" Type="varchar" MaxLength="50" />
+          <Property Name="fd_WrkDeptNo3" Type="varchar" MaxLength="50" />
+          <Property Name="fd_WrkDeptNo4" Type="varchar" MaxLength="50" />
+          <Property Name="fd_WrkDeptNo5" Type="varchar" MaxLength="50" />
+          <Property Name="fd_WrkDeptCmpNo" Type="varchar" MaxLength="50" />
+          <Property Name="fd_WrkDutyName" Type="varchar" MaxLength="100" />
+          <Property Name="fd_WrkDutyClass" Type="varchar" MaxLength="50" />
+          <Property Name="fd_WrkByWork" Type="varchar" MaxLength="100" />
+          <Property Name="fd_ChnName" Type="varchar" MaxLength="50" />
+          <Property Name="fd_EngName" Type="varchar" MaxLength="50" />
+          <Property Name="fd_ID" Type="varchar" MaxLength="50" />
+          <Property Name="fd_EleSign" Type="varchar" MaxLength="100" />
+          <Property Name="fd_EmpNo" Type="varchar" MaxLength="50" />
+          <Property Name="fd_EmpTitleName" Type="varchar" MaxLength="100" />
+          <Property Name="fd_ArrDate" Type="varchar" MaxLength="50" />
+          <Property Name="fd_SArrDate" Type="varchar" MaxLength="50" />
+          <Property Name="fd_QuitDate" Type="varchar" MaxLength="50" />
+          <Property Name="fd_WorkSDate" Type="varchar" MaxLength="50" />
+          <Property Name="fd_WorkEDate" Type="varchar" MaxLength="50" />
+          <Property Name="fd_WrkStatus" Type="varchar" MaxLength="50" />
+          <Property Name="fd_MngClass" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="GetMD5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="input" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GetMD5String" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="input" Type="varchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="HIS3_DB_MGTModelStoreContainer">
+          <EntitySet Name="TaxHmResourceAll" EntityType="Self.TaxHmResourceAll" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HIS3_DB_MGTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TaxHmResourceAll">
+          <Key>
+            <PropertyRef Name="deSerialNo" />
+          </Key>
+          <Property Name="deSerialNo" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniversalID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastModified" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FORM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_DutyNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_DutyType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDeptFullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDeptNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgMissionName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgMissionUniNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgAffiliateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgAffiliateUniNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDeptName1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDeptName2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDeptName3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDeptName4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDeptName5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDeptNo1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDeptNo2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDeptNo3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDeptNo4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDeptNo5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDeptCmpNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDutyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgDutyClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgTitleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_OrgByWork" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDeptFullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDeptNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkMissionName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkMissionUniNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkAffiliateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkAffiliateUniNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDeptName1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDeptName2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDeptName3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDeptName4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDeptName5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDeptNo1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDeptNo2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDeptNo3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDeptNo4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDeptNo5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDeptCmpNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDutyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkDutyClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkByWork" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_ChnName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_EngName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_EleSign" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_EmpNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_EmpTitleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fd_ArrDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_SArrDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_QuitDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WorkSDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WorkEDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_WrkStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fd_MngClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="HIS3_DB_MGTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TaxHmResourceAll" EntityType="Self.TaxHmResourceAll" />
+          <FunctionImport Name="GetMD5" ReturnType="Collection(String)">
+          <Parameter Name="input" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HIS3_DB_MGTModelStoreContainer" CdmEntityContainer="HIS3_DB_MGTEntities">
+          <EntitySetMapping Name="TaxHmResourceAll">
+            <EntityTypeMapping TypeName="HIS3_DB_MGTModel.TaxHmResourceAll">
+              <MappingFragment StoreEntitySet="TaxHmResourceAll">
+                <ScalarProperty Name="deSerialNo" ColumnName="deSerialNo" />
+                <ScalarProperty Name="UniversalID" ColumnName="UniversalID" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="FORM" ColumnName="FORM" />
+                <ScalarProperty Name="fd_DutyNo" ColumnName="fd_DutyNo" />
+                <ScalarProperty Name="fd_DutyType" ColumnName="fd_DutyType" />
+                <ScalarProperty Name="fd_OrgDeptFullName" ColumnName="fd_OrgDeptFullName" />
+                <ScalarProperty Name="fd_OrgDeptNo" ColumnName="fd_OrgDeptNo" />
+                <ScalarProperty Name="fd_OrgMissionName" ColumnName="fd_OrgMissionName" />
+                <ScalarProperty Name="fd_OrgMissionUniNo" ColumnName="fd_OrgMissionUniNo" />
+                <ScalarProperty Name="fd_OrgAffiliateName" ColumnName="fd_OrgAffiliateName" />
+                <ScalarProperty Name="fd_OrgAffiliateUniNo" ColumnName="fd_OrgAffiliateUniNo" />
+                <ScalarProperty Name="fd_OrgDeptName1" ColumnName="fd_OrgDeptName1" />
+                <ScalarProperty Name="fd_OrgDeptName2" ColumnName="fd_OrgDeptName2" />
+                <ScalarProperty Name="fd_OrgDeptName3" ColumnName="fd_OrgDeptName3" />
+                <ScalarProperty Name="fd_OrgDeptName4" ColumnName="fd_OrgDeptName4" />
+                <ScalarProperty Name="fd_OrgDeptName5" ColumnName="fd_OrgDeptName5" />
+                <ScalarProperty Name="fd_OrgDeptNo1" ColumnName="fd_OrgDeptNo1" />
+                <ScalarProperty Name="fd_OrgDeptNo2" ColumnName="fd_OrgDeptNo2" />
+                <ScalarProperty Name="fd_OrgDeptNo3" ColumnName="fd_OrgDeptNo3" />
+                <ScalarProperty Name="fd_OrgDeptNo4" ColumnName="fd_OrgDeptNo4" />
+                <ScalarProperty Name="fd_OrgDeptNo5" ColumnName="fd_OrgDeptNo5" />
+                <ScalarProperty Name="fd_OrgDeptCmpNo" ColumnName="fd_OrgDeptCmpNo" />
+                <ScalarProperty Name="fd_OrgLevel" ColumnName="fd_OrgLevel" />
+                <ScalarProperty Name="fd_OrgDutyName" ColumnName="fd_OrgDutyName" />
+                <ScalarProperty Name="fd_OrgDutyClass" ColumnName="fd_OrgDutyClass" />
+                <ScalarProperty Name="fd_OrgTitleName" ColumnName="fd_OrgTitleName" />
+                <ScalarProperty Name="fd_OrgByWork" ColumnName="fd_OrgByWork" />
+                <ScalarProperty Name="fd_WrkDeptFullName" ColumnName="fd_WrkDeptFullName" />
+                <ScalarProperty Name="fd_WrkDeptNo" ColumnName="fd_WrkDeptNo" />
+                <ScalarProperty Name="fd_WrkMissionName" ColumnName="fd_WrkMissionName" />
+                <ScalarProperty Name="fd_WrkMissionUniNo" ColumnName="fd_WrkMissionUniNo" />
+                <ScalarProperty Name="fd_WrkAffiliateName" ColumnName="fd_WrkAffiliateName" />
+                <ScalarProperty Name="fd_WrkAffiliateUniNo" ColumnName="fd_WrkAffiliateUniNo" />
+                <ScalarProperty Name="fd_WrkDeptName1" ColumnName="fd_WrkDeptName1" />
+                <ScalarProperty Name="fd_WrkDeptName2" ColumnName="fd_WrkDeptName2" />
+                <ScalarProperty Name="fd_WrkDeptName3" ColumnName="fd_WrkDeptName3" />
+                <ScalarProperty Name="fd_WrkDeptName4" ColumnName="fd_WrkDeptName4" />
+                <ScalarProperty Name="fd_WrkDeptName5" ColumnName="fd_WrkDeptName5" />
+                <ScalarProperty Name="fd_WrkDeptNo1" ColumnName="fd_WrkDeptNo1" />
+                <ScalarProperty Name="fd_WrkDeptNo2" ColumnName="fd_WrkDeptNo2" />
+                <ScalarProperty Name="fd_WrkDeptNo3" ColumnName="fd_WrkDeptNo3" />
+                <ScalarProperty Name="fd_WrkDeptNo4" ColumnName="fd_WrkDeptNo4" />
+                <ScalarProperty Name="fd_WrkDeptNo5" ColumnName="fd_WrkDeptNo5" />
+                <ScalarProperty Name="fd_WrkDeptCmpNo" ColumnName="fd_WrkDeptCmpNo" />
+                <ScalarProperty Name="fd_WrkDutyName" ColumnName="fd_WrkDutyName" />
+                <ScalarProperty Name="fd_WrkDutyClass" ColumnName="fd_WrkDutyClass" />
+                <ScalarProperty Name="fd_WrkByWork" ColumnName="fd_WrkByWork" />
+                <ScalarProperty Name="fd_ChnName" ColumnName="fd_ChnName" />
+                <ScalarProperty Name="fd_EngName" ColumnName="fd_EngName" />
+                <ScalarProperty Name="fd_ID" ColumnName="fd_ID" />
+                <ScalarProperty Name="fd_EleSign" ColumnName="fd_EleSign" />
+                <ScalarProperty Name="fd_EmpNo" ColumnName="fd_EmpNo" />
+                <ScalarProperty Name="fd_EmpTitleName" ColumnName="fd_EmpTitleName" />
+                <ScalarProperty Name="fd_ArrDate" ColumnName="fd_ArrDate" />
+                <ScalarProperty Name="fd_SArrDate" ColumnName="fd_SArrDate" />
+                <ScalarProperty Name="fd_QuitDate" ColumnName="fd_QuitDate" />
+                <ScalarProperty Name="fd_WorkSDate" ColumnName="fd_WorkSDate" />
+                <ScalarProperty Name="fd_WorkEDate" ColumnName="fd_WorkEDate" />
+                <ScalarProperty Name="fd_WrkStatus" ColumnName="fd_WrkStatus" />
+                <ScalarProperty Name="fd_MngClass" ColumnName="fd_MngClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetMD5" FunctionName="HIS3_DB_MGTModel.Store.GetMD5" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

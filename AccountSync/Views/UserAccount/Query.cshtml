@@ -1,0 +1,70 @@
+﻿@model AccountSync.Models.passwd
+
+@{
+    ViewBag.Title = "Query";
+}
+
+<h2>個人帳號檢視</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+                @Html.DisplayNameFor(model => model.password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.password)
+            </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.enabled)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.enabled)
+            </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dept)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dept)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mail_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mail_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fullname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comment)
+        </dd>
+
+    </dl>
+</div>
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.user }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+
+<p>
+    @Html.ActionLink("變更密碼", "ResetPassword", new { user = Model.user })
+    @Html.ActionLink("忘記密碼", "ForgetPassword", new { user = Model.user })
+</p>

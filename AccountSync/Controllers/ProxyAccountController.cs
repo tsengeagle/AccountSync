@@ -85,7 +85,8 @@ namespace AccountSync.Controllers
             }
 
             var myAccount = DB_GEN.GenProxyAccount.Find(model.UserID);
-            if (myAccount == null)
+            var myProxyAccount = hluser.passwd.Find(model.UserID);
+            if ((myAccount == null) || (myProxyAccount == null))
             {
                 return View("AccountNotFound");
             }
@@ -106,8 +107,10 @@ namespace AccountSync.Controllers
             myAccount.chXData = NewPasswordMD5;
             myAccount.dtLastModified = DateTime.Now;
             myAccount.chXDataHosp = "Web";
-
             DB_GEN.SaveChanges();
+
+            myProxyAccount.password = NewPasswordMD5.ToLower();
+            hluser.SaveChanges();
 
             return View("PasswordChanged");
         }

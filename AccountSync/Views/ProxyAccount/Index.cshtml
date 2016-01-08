@@ -18,11 +18,17 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().isSynced)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().UserID)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().isEnabled)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UserID)
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().DeptName)
         </th>
@@ -39,11 +45,35 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserName)
+                @{
+        if (item.isSynced)
+        {
+            <span class="glyphicon glyphicon-ok"></span>
+        }
+        else
+        {
+            <span class="glyphicon glyphicon-remove"></span>
+        }
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserID)
+                @{
+        if (item.isEnabled)
+        {
+            <span class="glyphicon glyphicon-ok"></span>
+        }
+        else
+        {
+            <span class="glyphicon glyphicon-remove"></span>
+        }
+                }
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.DeptName)
             </td>
@@ -55,8 +85,8 @@
             </td>
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
     }

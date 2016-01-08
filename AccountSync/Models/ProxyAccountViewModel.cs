@@ -8,7 +8,7 @@ namespace AccountSync.Models
 {
     public partial class ProxyAccountViewModel
     {
-        [Display(Name="名稱")]
+        [Display(Name = "名稱")]
         public string UserName { get; set; }
         [Display(Name = "帳號")]
         public string UserID { get; set; }
@@ -16,7 +16,11 @@ namespace AccountSync.Models
         public string DeptName { get; set; }
         [Display(Name = "Notes ID")]
         public string NoteID { get; set; }
-        [Display(Name = "停用日")]
+        [Display(Name = "到期日")]
         public DateTime? dtEndDate { get; set; }
+        [Display(Name = "密碼一致?")]
+        public bool isSynced { get; set; }
+        [Display(Name = "帳號可用?")]
+        public bool isEnabled { get; set; }
     }
 }

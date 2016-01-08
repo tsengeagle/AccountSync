@@ -15,7 +15,7 @@
     <AssemblyName>AccountSync</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -142,21 +142,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountDest.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AccountDest.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AccountDest.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AccountDest.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AccountDest.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AccountDest.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\DB_GEN.Context.cs">
       <AutoGen>True</AutoGen>
@@ -177,28 +162,25 @@
       <DependentUpon>DB_GEN.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GenProxyAccountPartial.cs" />
-    <Compile Include="Models\HIS3_DB_MGT.Context.cs">
+    <Compile Include="Models\hluser.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HIS3_DB_MGT.Context.tt</DependentUpon>
+      <DependentUpon>hluser.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HIS3_DB_MGT.cs">
+    <Compile Include="Models\hluser.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HIS3_DB_MGT.tt</DependentUpon>
+      <DependentUpon>hluser.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HIS3_DB_MGT.Designer.cs">
+    <Compile Include="Models\hluser.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HIS3_DB_MGT.edmx</DependentUpon>
+      <DependentUpon>hluser.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\passwd.cs">
-      <DependentUpon>AccountDest.tt</DependentUpon>
+      <DependentUpon>hluser.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProxyAccountViewModel.cs" />
-    <Compile Include="Models\TaxHmResourceAll.cs">
-      <DependentUpon>HIS3_DB_MGT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -211,40 +193,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\AccountDest.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AccountDest.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\AccountDest.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AccountDest.edmx</DependentUpon>
-      <LastGenOutput>AccountDest.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\AccountDest.edmx.diagram">
-      <DependentUpon>AccountDest.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\AccountDest.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AccountDest.edmx</DependentUpon>
-      <LastGenOutput>AccountDest.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\HIS3_DB_MGT.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HIS3_DB_MGT.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\HIS3_DB_MGT.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HIS3_DB_MGT.edmx</DependentUpon>
-      <LastGenOutput>HIS3_DB_MGT.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\HIS3_DB_MGT.edmx.diagram">
-      <DependentUpon>HIS3_DB_MGT.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\HIS3_DB_MGT.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HIS3_DB_MGT.edmx</DependentUpon>
-      <LastGenOutput>HIS3_DB_MGT.cs</LastGenOutput>
-    </Content>
     <EntityDeploy Include="Models\DB_GEN.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DB_GEN.Designer.cs</LastGenOutput>
@@ -261,6 +209,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DB_GEN.edmx</DependentUpon>
       <LastGenOutput>DB_GEN.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\hluser.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>hluser.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\hluser.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>hluser.edmx</DependentUpon>
+      <LastGenOutput>hluser.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\hluser.edmx.diagram">
+      <DependentUpon>hluser.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\hluser.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>hluser.edmx</DependentUpon>
+      <LastGenOutput>hluser.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\icapsvr1.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
@@ -332,16 +297,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>61719</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/AccountSync</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

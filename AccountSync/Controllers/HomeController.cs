@@ -14,28 +14,19 @@ namespace AccountSync.Controllers
             //return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+        //public ActionResult About()
+        //{
+        //    ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
+        //    return View();
+        //}
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+        //public ActionResult Contact()
+        //{
+        //    ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
-
-        public ActionResult MD5Test()
-        {
-            Models.HIS3_DB_MGTEntities db = new Models.HIS3_DB_MGTEntities();
-
-            string myMD5 = db.GetMD5("password").First();
-            ViewData.Add("md5", myMD5);
-            return View();
-        }
+        //    return View();
+        //}
 
     }
 }

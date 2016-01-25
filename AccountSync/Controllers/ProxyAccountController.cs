@@ -11,7 +11,7 @@ namespace AccountSync.Controllers
     {
         Models.DB_GENEntities DB_GEN = new Models.DB_GENEntities();
         Models.hluserEntities hluser = new Models.hluserEntities();
-
+        Models.MedProxyEntities MedProxy = new Models.MedProxyEntities();
 
         int pageSize = 15;
 
@@ -88,7 +88,9 @@ namespace AccountSync.Controllers
 
             var myAccount = DB_GEN.GenProxyAccount.Find(model.UserID.Trim());
             var myProxyAccount = hluser.passwd.Find(model.UserID.Trim());
-            if ((myAccount == null) || (myProxyAccount == null))
+            var myMedProxyAccount = MedProxy.passwd.Find(model.UserID.Trim());
+
+            if ((myAccount == null) || (myProxyAccount == null) || (myMedProxyAccount == null))
             {
                 return View("AccountNotFound");
             }
@@ -114,6 +116,10 @@ namespace AccountSync.Controllers
             myProxyAccount.password = NewPasswordMD5.ToLower();
             myProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Update by web";
             hluser.SaveChanges();
+
+            myMedProxyAccount.password = NewPasswordMD5.ToLower();
+            myMedProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Update by web";
+            MedProxy.SaveChanges();
 
             return View("PasswordChanged");
         }
@@ -147,6 +153,15 @@ namespace AccountSync.Controllers
             myProxyAccount.password = NewPasswordMD5.ToLower();
             myProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Reset by web";
             hluser.SaveChanges();
+
+            var myMedProxyAccount = MedProxy.passwd.Find(UserID.Trim());
+            if (myMedProxyAccount==null)
+            {
+                return View("AccountNotFound");
+            }
+            myMedProxyAccount.password = NewPasswordMD5.ToLower();
+            myMedProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Reset by web";
+            MedProxy.SaveChanges();
 
             return View("PasswordReseted", myAccount);
         }

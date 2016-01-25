@@ -177,8 +177,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>hluser.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\MedProxy.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedProxy.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MedProxy.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedProxy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MedProxy.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedProxy.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\passwd.cs">
-      <DependentUpon>hluser.tt</DependentUpon>
+      <DependentUpon>MedProxy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProxyAccountViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,6 +241,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>hluser.edmx</DependentUpon>
       <LastGenOutput>hluser.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\MedProxy.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MedProxy.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MedProxy.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MedProxy.edmx</DependentUpon>
+      <LastGenOutput>MedProxy.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\MedProxy.edmx.diagram">
+      <DependentUpon>MedProxy.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\MedProxy.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MedProxy.edmx</DependentUpon>
+      <LastGenOutput>MedProxy.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\icapsvr1.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />

@@ -18,26 +18,28 @@ namespace AccountSync.Controllers
         // GET: ProxyAccount
         public ActionResult Index(int page = 1)
         {
-            int currentPage = page < 1 ? 1 : page;
+            return RedirectToAction("Query");
 
-            var myAccount = DB_GEN.GenProxyAccount.OrderBy(o => o.chUserID).ToArray();
-            var proxyAccount = hluser.passwd.OrderBy(o => o.user).ToArray();
+            //int currentPage = page < 1 ? 1 : page;
 
-            var result = from his in myAccount
-                         join mysql in proxyAccount
-                         on his.chUserID equals mysql.user
-                         select new Models.ProxyAccountViewModel()
-                         {
-                             UserID = his.chUserID,
-                             UserName = his.chUserName,
-                             DeptName = his.chDeptName,
-                             dtEndDate = his.dtEndDate,
-                             NoteID = his.chEMail,
-                             isSynced = his.chXData.ToLower() == mysql.password.ToLower() ? true : false,
-                             isEnabled = !mysql.enabled
-                         };
+            //var myAccount = DB_GEN.GenProxyAccount.OrderBy(o => o.chUserID).ToArray();
+            //var proxyAccount = hluser.passwd.OrderBy(o => o.user).ToArray();
 
-            return View(result.ToPagedList(currentPage, pageSize));
+            //var result = from his in myAccount
+            //             join mysql in proxyAccount
+            //             on his.chUserID equals mysql.user
+            //             select new Models.ProxyAccountViewModel()
+            //             {
+            //                 UserID = his.chUserID,
+            //                 UserName = his.chUserName,
+            //                 DeptName = his.chDeptName,
+            //                 dtEndDate = his.dtEndDate,
+            //                 NoteID = his.chEMail,
+            //                 isSynced = his.chXData.ToLower() == mysql.password.ToLower() ? true : false,
+            //                 isEnabled = !mysql.enabled
+            //             };
+
+            //return View(result.ToPagedList(currentPage, pageSize));
         }
 
         public ActionResult Query()
@@ -84,8 +86,8 @@ namespace AccountSync.Controllers
                 return View(model);
             }
 
-            var myAccount = DB_GEN.GenProxyAccount.Find(model.UserID);
-            var myProxyAccount = hluser.passwd.Find(model.UserID);
+            var myAccount = DB_GEN.GenProxyAccount.Find(model.UserID.Trim());
+            var myProxyAccount = hluser.passwd.Find(model.UserID.Trim());
             if ((myAccount == null) || (myProxyAccount == null))
             {
                 return View("AccountNotFound");
@@ -110,6 +112,7 @@ namespace AccountSync.Controllers
             DB_GEN.SaveChanges();
 
             myProxyAccount.password = NewPasswordMD5.ToLower();
+            myProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Update by web";
             hluser.SaveChanges();
 
             return View("PasswordChanged");
@@ -117,18 +120,33 @@ namespace AccountSync.Controllers
 
         public ActionResult ResetPassword(string UserID)
         {
-            var myAccount = DB_GEN.GenProxyAccount.Find(UserID);
+            //TODO 為了相容於六碼ID，所以目前所有UserID都有先trim過，後面有空要改為repo樣式來統一整個邏輯
+            var myAccount = DB_GEN.GenProxyAccount.Find(UserID.Trim());
             if (myAccount == null)
             {
                 return View("AccountNotFound");
             }
 
-            string NewPasswordMD5 = DB_GEN.GetMD5(myAccount.chUserID).First().ToUpper();
+            Random rand = new Random(DateTime.Now.Millisecond);
+            string randPassword = "MF" + Convert.ToString(rand.Next(10000000, 99999999)).Substring(0, 4);
+            ViewData.Add("NewPassword", randPassword);
+
+            string NewPasswordMD5 = DB_GEN.GetMD5(randPassword).First().ToUpper();
             myAccount.chXData = NewPasswordMD5;
             myAccount.dtLastModified = DateTime.Now;
             myAccount.chXDataHosp = "Web";
 
             DB_GEN.SaveChanges();
+
+            var myProxyAccount = hluser.passwd.Find(UserID.Trim());
+            if (myProxyAccount == null)
+            {
+                return View("AccountNotFound");
+            }
+
+            myProxyAccount.password = NewPasswordMD5.ToLower();
+            myProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Reset by web";
+            hluser.SaveChanges();
 
             return View("PasswordReseted", myAccount);
         }

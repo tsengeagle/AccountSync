@@ -10,10 +10,8 @@ namespace AccountSync.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "ProxyAccount");
+            return RedirectToAction("Query", "ProxyAccount");
             //return View();
         }
-
-
     }
 }

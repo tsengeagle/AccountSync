@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="chUserID" />
           </Key>
-          <Property Name="chUserID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="chUserID" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="chXData" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="chUserName" Type="nvarchar" MaxLength="10" />
           <Property Name="chDeptName" Type="nvarchar" MaxLength="50" />
@@ -34,7 +34,7 @@
           <Key>
             <PropertyRef Name="chUserID" />
           </Key>
-          <Property Name="chUserID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="chUserID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="chXData" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="chUserName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="chDeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />

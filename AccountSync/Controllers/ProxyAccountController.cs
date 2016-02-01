@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using AccountSync.Models;
 
 namespace AccountSync.Controllers
 {
     public class ProxyAccountController : Controller
     {
-        Models.DB_GENEntities DB_GEN = new Models.DB_GENEntities();
+        //Models.DB_GENEntities DB_GEN = new Models.DB_GENEntities();
+        GenProxyAccountRepository DB_GEN_Repo = RepositoryHelper.GetGenProxyAccountRepository();
         Models.hluserEntities hluser = new Models.hluserEntities();
         Models.hluserEntities MedProxy = new Models.hluserEntities();
 
@@ -50,7 +52,7 @@ namespace AccountSync.Controllers
         [HttpPost]
         public ActionResult Query(string UserID)
         {
-            var myAccount = DB_GEN.GenProxyAccount.Find(UserID);
+            var myAccount = DB_GEN_Repo.GetUser(UserID);// DB_GEN.GenProxyAccount.Find(UserID);
             if (myAccount == null)
             {
                 return View("AccountNotFound");
@@ -60,16 +62,18 @@ namespace AccountSync.Controllers
 
         public ActionResult ChangePassword(string UserID)
         {
-            var changePasswordVM = DB_GEN.GenProxyAccount.Where(u => u.chUserID == UserID).
-                Select(s => new Models.ChangePasswordViewModel()
-                {
-                    UserID = s.chUserID,
-                    UserName = s.chUserName,
-                    OldPassword = "",
-                    NewPassword = "",
-                    NewPasswordConfirm = ""
-                }).
-                First();
+            //var changePasswordVM = DB_GEN.GenProxyAccount.Where(u => u.chUserID == UserID).
+            //    Select(s => new Models.ChangePasswordViewModel()
+            //    {
+            //        UserID = s.chUserID,
+            //        UserName = s.chUserName,
+            //        OldPassword = "",
+            //        NewPassword = "",
+            //        NewPasswordConfirm = ""
+            //    }).
+            //    First();
+
+            var changePasswordVM = DB_GEN_Repo.GetChangePasswordVM(UserID);
 
             if (changePasswordVM == null)
             {
@@ -86,7 +90,7 @@ namespace AccountSync.Controllers
                 return View(model);
             }
 
-            var myAccount = DB_GEN.GenProxyAccount.Find(model.UserID.Trim());
+            var myAccount = DB_GEN_Repo.GetUser(model.UserID); // DB_GEN.GenProxyAccount.Find(model.UserID.Trim());
             var myProxyAccount = hluser.passwd.Find(model.UserID.Trim());
             var myMedProxyAccount = MedProxy.passwd.Find(model.UserID.Trim());
 
@@ -95,7 +99,7 @@ namespace AccountSync.Controllers
                 return View("AccountNotFound");
             }
 
-            string OldPasswordMD5 = DB_GEN.GetMD5(model.OldPassword).First().ToUpper();
+            string OldPasswordMD5 = DB_GEN_Repo.GetMD5(model.OldPassword); // DB_GEN.GetMD5(model.OldPassword).First().ToUpper();
 
             if (myAccount.chXData != OldPasswordMD5)
             {
@@ -107,11 +111,11 @@ namespace AccountSync.Controllers
                 return View("PasswordInconfirm");
             }
 
-            string NewPasswordMD5 = DB_GEN.GetMD5(model.NewPassword).First().ToUpper();
+            string NewPasswordMD5 = DB_GEN_Repo.GetMD5(model.NewPassword); //DB_GEN.GetMD5(model.NewPassword).First().ToUpper();
             myAccount.chXData = NewPasswordMD5;
             myAccount.dtLastModified = DateTime.Now;
             myAccount.chXDataHosp = "Web";
-            DB_GEN.SaveChanges();
+            DB_GEN_Repo.UnitOfWork.Commit(); //DB_GEN.SaveChanges();
 
             myProxyAccount.password = NewPasswordMD5.ToLower();
             myProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Update by web";
@@ -127,7 +131,7 @@ namespace AccountSync.Controllers
         public ActionResult ResetPassword(string UserID)
         {
             //TODO 為了相容於六碼ID，所以目前所有UserID都有先trim過，後面有空要改為repo樣式來統一整個邏輯
-            var myAccount = DB_GEN.GenProxyAccount.Find(UserID.Trim());
+            var myAccount = DB_GEN_Repo.GetUser(UserID); // DB_GEN.GenProxyAccount.Find(UserID.Trim());
             if (myAccount == null)
             {
                 return View("AccountNotFound");
@@ -137,12 +141,12 @@ namespace AccountSync.Controllers
             string randPassword = "MF" + Convert.ToString(rand.Next(10000000, 99999999)).Substring(0, 4);
             ViewData.Add("NewPassword", randPassword);
 
-            string NewPasswordMD5 = DB_GEN.GetMD5(randPassword).First().ToUpper();
+            string NewPasswordMD5 = DB_GEN_Repo.GetMD5(randPassword); //DB_GEN.GetMD5(randPassword).First().ToUpper();
             myAccount.chXData = NewPasswordMD5;
             myAccount.dtLastModified = DateTime.Now;
             myAccount.chXDataHosp = "Web";
 
-            DB_GEN.SaveChanges();
+            DB_GEN_Repo.UnitOfWork.Commit(); // DB_GEN.SaveChanges();
 
             var myProxyAccount = hluser.passwd.Find(UserID.Trim());
             if (myProxyAccount == null)
@@ -155,7 +159,7 @@ namespace AccountSync.Controllers
             hluser.SaveChanges();
 
             var myMedProxyAccount = MedProxy.passwd.Find(UserID.Trim());
-            if (myMedProxyAccount==null)
+            if (myMedProxyAccount == null)
             {
                 return View("AccountNotFound");
             }

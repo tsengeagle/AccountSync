@@ -163,11 +163,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB_GEN_PartialClass.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\hluser_PartialClass.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>hluser_PartialClass.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GenProxyAccount.cs">
       <DependentUpon>DB_GEN.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GenProxyAccount.Partial.cs">
-      <DependentUpon>DB_GEN_PartialClass.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\hluser.Context.cs">
       <AutoGen>True</AutoGen>
@@ -201,6 +203,9 @@
     </Compile>
     <Compile Include="Models\passwd.cs">
       <DependentUpon>MedProxy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\passwd.Partial.cs">
+      <DependentUpon>hluser_PartialClass.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProxyAccountViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -269,6 +274,10 @@
     <Content Include="Models\DB_GEN_PartialClass.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DB_GEN_PartialClass.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\hluser_PartialClass.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>hluser_PartialClass.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\icapsvr1.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />

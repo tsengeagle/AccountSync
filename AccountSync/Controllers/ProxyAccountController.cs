@@ -183,6 +183,11 @@ namespace AccountSync.Controllers
 
             return View("PasswordReseted", myAccount);
         }
+
+        public ActionResult NewAccount()
+        {
+            return View();
+        }
     }
 
 

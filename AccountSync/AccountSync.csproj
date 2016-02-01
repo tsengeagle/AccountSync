@@ -346,6 +346,7 @@
     <Content Include="Views\Shared\PasswordChanged.cshtml" />
     <Content Include="Views\Shared\PasswordReseted.cshtml" />
     <Content Include="Views\ProxyAccount\Index.cshtml" />
+    <Content Include="Views\ProxyAccount\NewAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

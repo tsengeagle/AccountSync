@@ -158,10 +158,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB_GEN.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DB_GEN_PartialClass.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_GEN_PartialClass.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GenProxyAccount.cs">
       <DependentUpon>DB_GEN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GenProxyAccountPartial.cs" />
+    <Compile Include="Models\GenProxyAccount.Partial.cs">
+      <DependentUpon>DB_GEN_PartialClass.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\hluser.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -258,6 +265,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MedProxy.edmx</DependentUpon>
       <LastGenOutput>MedProxy.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB_GEN_PartialClass.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DB_GEN_PartialClass.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\icapsvr1.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />

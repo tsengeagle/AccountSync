@@ -24,6 +24,7 @@ namespace AccountSync.Models.DB_GEN
         
         [StringLength(10, ErrorMessage="欄位長度不得大於 10 個字元")]
         [Display(Name = "姓名")]
+        [Required]
         public string chUserName { get; set; }
         
         [StringLength(50, ErrorMessage="欄位長度不得大於 50 個字元")]
@@ -38,6 +39,7 @@ namespace AccountSync.Models.DB_GEN
         [Display(Name = "停用日")]
         public string chEndDate { get; set; }
         [Display(Name = "帳號有效時間")]
+        [Required]
         public Nullable<System.DateTime> dtEndDate { get; set; }
         [Display(Name = "最後修改時間")]
         public Nullable<System.DateTime> dtLastModified { get; set; }

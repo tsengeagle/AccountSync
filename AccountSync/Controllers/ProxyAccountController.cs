@@ -188,6 +188,12 @@ namespace AccountSync.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult NewAccount(Models.NewAccountViewModel model)
+        {
+            //TODO 新增邏輯還沒弄完
+            return View();
+        }
     }
 
 

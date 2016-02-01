@@ -10,13 +10,13 @@ namespace AccountSync.Models
     {
         [Display(Name = "名稱")]
         public string UserName { get; set; }
-        [Display(Name = "帳號")]
+        [Display(Name = "上網帳號")]
         public string UserID { get; set; }
         [Display(Name = "單位")]
         public string DeptName { get; set; }
         [Display(Name = "Notes ID")]
         public string NoteID { get; set; }
-        [Display(Name = "到期日")]
+        [Display(Name = "帳號有效期限")]
         public DateTime? dtEndDate { get; set; }
         [Display(Name = "密碼一致?")]
         public bool isSynced { get; set; }

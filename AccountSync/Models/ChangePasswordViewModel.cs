@@ -10,7 +10,7 @@ namespace AccountSync.Models
     {
         [Display(Name = "姓名")]
         public string UserName { get; set; }
-        [Display(Name = "帳號")]
+        [Display(Name = "上網帳號")]
         public string UserID { get; set; }
         [Display(Name = "舊密碼"), Required(ErrorMessage = "必須輸入舊密碼")]
         public string OldPassword { get; set; }

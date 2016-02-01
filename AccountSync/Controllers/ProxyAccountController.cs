@@ -12,9 +12,24 @@ namespace AccountSync.Controllers
     public class ProxyAccountController : Controller
     {
         //Models.DB_GENEntities DB_GEN = new Models.DB_GENEntities();
-        GenProxyAccountRepository DB_GEN_Repo = AccountSync.Models.RepositoryHelper.GetGenProxyAccountRepository();
-        hluserEntities hluser = new hluserEntities();
-        hluserEntities MedProxy = new hluserEntities();
+        GenProxyAccountRepository DB_GEN_Repo ;
+
+        //hluserEntities hluser = new hluserEntities();
+        //hluserEntities MedProxy = new hluserEntities();
+        AccountSync.Models.hluser.passwdRepository hluser_Repo ;
+        AccountSync.Models.hluser.passwdRepository MedProxy_Repo ;
+
+        public ProxyAccountController()
+        {
+            DB_GEN_Repo = AccountSync.Models.RepositoryHelper.GetGenProxyAccountRepository();
+
+            hluser_Repo = AccountSync.Models.hluser.RepositoryHelper.GetpasswdRepository();
+
+            AccountSync.Models.hluser.EFUnitOfWork medProxyUOW = new Models.hluser.EFUnitOfWork();
+            medProxyUOW.ConnectionString = "server=10.2.100.10;user id=guid;password=gpwd;persistsecurityinfo=True;database=hluser";
+            MedProxy_Repo = AccountSync.Models.hluser.RepositoryHelper.GetpasswdRepository(medProxyUOW);
+
+        }
 
         int pageSize = 15;
 
@@ -92,8 +107,8 @@ namespace AccountSync.Controllers
             }
 
             var myAccount = DB_GEN_Repo.GetUser(model.UserID); // DB_GEN.GenProxyAccount.Find(model.UserID.Trim());
-            var myProxyAccount = hluser.passwd.Find(model.UserID.Trim());
-            var myMedProxyAccount = MedProxy.passwd.Find(model.UserID.Trim());
+            var myProxyAccount = hluser_Repo.GetUser(model.UserID); // hluser.passwd.Find(model.UserID.Trim());
+            var myMedProxyAccount = MedProxy_Repo.GetUser(model.UserID); // MedProxy.passwd.Find(model.UserID.Trim());
 
             if ((myAccount == null) || (myProxyAccount == null) || (myMedProxyAccount == null))
             {
@@ -120,11 +135,11 @@ namespace AccountSync.Controllers
 
             myProxyAccount.password = NewPasswordMD5.ToLower();
             myProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Update by web";
-            hluser.SaveChanges();
+            hluser_Repo.UnitOfWork.Commit(); //hluser.SaveChanges();
 
             myMedProxyAccount.password = NewPasswordMD5.ToLower();
             myMedProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Update by web";
-            MedProxy.SaveChanges();
+            MedProxy_Repo.UnitOfWork.Commit(); // MedProxy.SaveChanges();
 
             return View("PasswordChanged");
         }
@@ -149,7 +164,7 @@ namespace AccountSync.Controllers
 
             DB_GEN_Repo.UnitOfWork.Commit(); // DB_GEN.SaveChanges();
 
-            var myProxyAccount = hluser.passwd.Find(UserID.Trim());
+            var myProxyAccount = hluser_Repo.GetUser(UserID); // hluser.passwd.Find(UserID.Trim());
             if (myProxyAccount == null)
             {
                 return View("AccountNotFound");
@@ -157,16 +172,16 @@ namespace AccountSync.Controllers
 
             myProxyAccount.password = NewPasswordMD5.ToLower();
             myProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Reset by web";
-            hluser.SaveChanges();
+            hluser_Repo.UnitOfWork.Commit(); // hluser.SaveChanges();
 
-            var myMedProxyAccount = MedProxy.passwd.Find(UserID.Trim());
+            var myMedProxyAccount = MedProxy_Repo.GetUser(UserID); // MedProxy.passwd.Find(UserID.Trim());
             if (myMedProxyAccount == null)
             {
                 return View("AccountNotFound");
             }
             myMedProxyAccount.password = NewPasswordMD5.ToLower();
             myMedProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Reset by web";
-            MedProxy.SaveChanges();
+            MedProxy_Repo.UnitOfWork.Commit(); // MedProxy.SaveChanges();
 
             return View("PasswordReseted", myAccount);
         }

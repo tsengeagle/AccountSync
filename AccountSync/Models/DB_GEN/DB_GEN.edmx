@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_GENModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GenProxyAccount">
+          <Key>
+            <PropertyRef Name="chUserID" />
+          </Key>
+          <Property Name="chUserID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="chXData" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="chUserName" Type="nvarchar" MaxLength="10" />
+          <Property Name="chDeptName" Type="nvarchar" MaxLength="50" />
+          <Property Name="chEMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="chEndDate" Type="char" MaxLength="7" />
+          <Property Name="dtEndDate" Type="datetime" />
+          <Property Name="dtLastModified" Type="datetime" />
+          <Property Name="chXDataHosp" Type="char" MaxLength="5" />
+          <Property Name="chUserType" Type="varchar" MaxLength="50" />
+          <Property Name="chUserID10" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Function Name="GetMD5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="input" Type="varchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="DB_GENModelStoreContainer">
+          <EntitySet Name="GenProxyAccount" EntityType="Self.GenProxyAccount" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_GENModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="GenProxyAccount">
+          <Key>
+            <PropertyRef Name="chUserID" />
+          </Key>
+          <Property Name="chUserID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="chXData" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="chUserName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="chDeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="chEMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="chEndDate" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="dtEndDate" Type="DateTime" Precision="3" />
+          <Property Name="dtLastModified" Type="DateTime" Precision="3" />
+          <Property Name="chXDataHosp" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="chUserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="chUserID10" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="DB_GENEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GenProxyAccount" EntityType="Self.GenProxyAccount" />
+          <FunctionImport Name="GetMD5" ReturnType="Collection(String)">
+            <Parameter Name="input" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_GENModelStoreContainer" CdmEntityContainer="DB_GENEntities">
+          <EntitySetMapping Name="GenProxyAccount">
+            <EntityTypeMapping TypeName="DB_GENModel.GenProxyAccount">
+              <MappingFragment StoreEntitySet="GenProxyAccount">
+                <ScalarProperty Name="chUserID" ColumnName="chUserID" />
+                <ScalarProperty Name="chXData" ColumnName="chXData" />
+                <ScalarProperty Name="chUserName" ColumnName="chUserName" />
+                <ScalarProperty Name="chDeptName" ColumnName="chDeptName" />
+                <ScalarProperty Name="chEMail" ColumnName="chEMail" />
+                <ScalarProperty Name="chEndDate" ColumnName="chEndDate" />
+                <ScalarProperty Name="dtEndDate" ColumnName="dtEndDate" />
+                <ScalarProperty Name="dtLastModified" ColumnName="dtLastModified" />
+                <ScalarProperty Name="chXDataHosp" ColumnName="chXDataHosp" />
+                <ScalarProperty Name="chUserType" ColumnName="chUserType" />
+                <ScalarProperty Name="chUserID10" ColumnName="chUserID10" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetMD5" FunctionName="DB_GENModel.Store.GetMD5" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

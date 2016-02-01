@@ -4,15 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
-using AccountSync.Models;
-using AccountSync.Models.hluser;
 
 namespace AccountSync.Controllers
 {
     public class ProxyAccountController : Controller
     {
         //Models.DB_GENEntities DB_GEN = new Models.DB_GENEntities();
-        GenProxyAccountRepository DB_GEN_Repo ;
+        AccountSync.Models.DB_GEN.GenProxyAccountRepository DB_GEN_Repo ;
 
         //hluserEntities hluser = new hluserEntities();
         //hluserEntities MedProxy = new hluserEntities();
@@ -21,7 +19,7 @@ namespace AccountSync.Controllers
 
         public ProxyAccountController()
         {
-            DB_GEN_Repo = AccountSync.Models.RepositoryHelper.GetGenProxyAccountRepository();
+            DB_GEN_Repo = AccountSync.Models.DB_GEN.RepositoryHelper.GetGenProxyAccountRepository();
 
             hluser_Repo = AccountSync.Models.hluser.RepositoryHelper.GetpasswdRepository();
 

@@ -143,6 +143,55 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\DB_GEN\DB_GEN.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_GEN.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_GEN\DB_GEN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_GEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_GEN\DB_GEN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_GEN.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_GEN\EFGeneratePartialClass.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_GEN\EFRepository.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_GEN\EFUnitOfWork.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_GEN\GenProxyAccount.cs">
+      <DependentUpon>DB_GEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_GEN\GenProxyAccount.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_GEN\GenProxyAccountRepository.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_GEN\IRepository.EF6.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_GEN\IUnitOfWork.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_GEN\RepositoryHelper.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_GEN\RepositoryIQueryableExtensions.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\hluser\EFGeneratePartialClass.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -230,6 +279,31 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>IRepository.EF6.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="Models\DB_GEN\DB_GEN.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DB_GEN.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DB_GEN\DB_GEN.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB_GEN.edmx</DependentUpon>
+      <LastGenOutput>DB_GEN.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB_GEN\DB_GEN.edmx.diagram">
+      <DependentUpon>DB_GEN.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\DB_GEN\DB_GEN.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB_GEN.edmx</DependentUpon>
+      <LastGenOutput>DB_GEN.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB_GEN\EFGeneratePartialClass.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EFGeneratePartialClass.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB_GEN\IRepository.EF6.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IRepository.EF6.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\icapsvr1.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -275,7 +349,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\DB_GEN\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

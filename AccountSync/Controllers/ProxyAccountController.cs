@@ -11,7 +11,7 @@ namespace AccountSync.Controllers
     {
         Models.DB_GENEntities DB_GEN = new Models.DB_GENEntities();
         Models.hluserEntities hluser = new Models.hluserEntities();
-        Models.MedProxyEntities MedProxy = new Models.MedProxyEntities();
+        Models.hluserEntities MedProxy = new Models.hluserEntities();
 
         int pageSize = 15;
 

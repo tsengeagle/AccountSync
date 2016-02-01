@@ -5,15 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using AccountSync.Models;
+using AccountSync.Models.hluser;
 
 namespace AccountSync.Controllers
 {
     public class ProxyAccountController : Controller
     {
         //Models.DB_GENEntities DB_GEN = new Models.DB_GENEntities();
-        GenProxyAccountRepository DB_GEN_Repo = RepositoryHelper.GetGenProxyAccountRepository();
-        Models.hluserEntities hluser = new Models.hluserEntities();
-        Models.hluserEntities MedProxy = new Models.hluserEntities();
+        GenProxyAccountRepository DB_GEN_Repo = AccountSync.Models.RepositoryHelper.GetGenProxyAccountRepository();
+        hluserEntities hluser = new hluserEntities();
+        hluserEntities MedProxy = new hluserEntities();
 
         int pageSize = 15;
 

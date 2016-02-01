@@ -175,6 +175,55 @@
     <Compile Include="Models\GenProxyAccount.cs">
       <DependentUpon>DB_GEN.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\hluser\EFGeneratePartialClass.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\hluser\EFRepository.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\hluser\EFUnitOfWork.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\hluser\hluser.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>hluser.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\hluser\hluser.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>hluser.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\hluser\hluser.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>hluser.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\hluser\IRepository.EF6.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\hluser\IUnitOfWork.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\hluser\passwd.cs">
+      <DependentUpon>hluser.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\hluser\passwd.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\hluser\passwdRepository.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\hluser\RepositoryHelper.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\hluser\RepositoryIQueryableExtensions.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IRepository.EF6.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -224,6 +273,31 @@
       <LastGenOutput>DB_GEN_PartialClass.cs</LastGenOutput>
     </Content>
     <Content Include="Models\IRepository.EF6.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IRepository.EF6.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\hluser\hluser.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>hluser.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\hluser\hluser.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>hluser.edmx</DependentUpon>
+      <LastGenOutput>hluser.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\hluser\hluser.edmx.diagram">
+      <DependentUpon>hluser.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\hluser\hluser.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>hluser.edmx</DependentUpon>
+      <LastGenOutput>hluser.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\hluser\EFGeneratePartialClass.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EFGeneratePartialClass.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\hluser\IRepository.EF6.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>IRepository.EF6.cs</LastGenOutput>
     </Content>

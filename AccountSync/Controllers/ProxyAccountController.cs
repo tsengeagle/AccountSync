@@ -10,12 +10,12 @@ namespace AccountSync.Controllers
     public class ProxyAccountController : Controller
     {
         //Models.DB_GENEntities DB_GEN = new Models.DB_GENEntities();
-        AccountSync.Models.DB_GEN.GenProxyAccountRepository DB_GEN_Repo ;
+        AccountSync.Models.DB_GEN.GenProxyAccountRepository DB_GEN_Repo;
 
         //hluserEntities hluser = new hluserEntities();
         //hluserEntities MedProxy = new hluserEntities();
-        AccountSync.Models.hluser.passwdRepository hluser_Repo ;
-        AccountSync.Models.hluser.passwdRepository MedProxy_Repo ;
+        AccountSync.Models.hluser.passwdRepository hluser_Repo;
+        AccountSync.Models.hluser.passwdRepository MedProxy_Repo;
 
         public ProxyAccountController()
         {
@@ -38,8 +38,8 @@ namespace AccountSync.Controllers
 
             //int currentPage = page < 1 ? 1 : page;
 
-            //var myAccount = DB_GEN.GenProxyAccount.OrderBy(o => o.chUserID).ToArray();
-            //var proxyAccount = hluser.passwd.OrderBy(o => o.user).ToArray();
+            //var myAccount = DB_GEN_Repo.All().OrderBy(o => o.chUserID).ToArray();  // DB_GEN.GenProxyAccount.OrderBy(o => o.chUserID).ToArray();
+            //var proxyAccount = hluser_Repo.All().OrderBy(o => o.user).ToArray(); // hluser.passwd.OrderBy(o => o.user).ToArray();
 
             //var result = from his in myAccount
             //             join mysql in proxyAccount
@@ -184,16 +184,39 @@ namespace AccountSync.Controllers
             return View("PasswordReseted", myAccount);
         }
 
+        [Authorize]
         public ActionResult NewAccount()
         {
             return View();
         }
+
+        [Authorize]
         [HttpPost]
         public ActionResult NewAccount(Models.NewAccountViewModel model)
         {
             //TODO 新增邏輯還沒弄完
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            Models.DB_GEN.GenProxyAccount newAccount = new Models.DB_GEN.GenProxyAccount();
+            newAccount.chUserID = model.UserID;
+            newAccount.chUserName = model.UserName;
+            newAccount.chDeptName = model.DeptName;
+            newAccount.chEMail = model.NoteID;
+            newAccount.dtEndDate = model.dtEndDate;
+            newAccount.dtLastModified = DateTime.Now;
+            newAccount.chXData = DB_GEN_Repo.GetMD5(model.UserID);
+            newAccount.chXDataHosp = "Web";
+
+            DB_GEN_Repo.Add(newAccount);
+
+            DB_GEN_Repo.UnitOfWork.Commit();
+
+            return View("AccountAdded",model);
         }
+
     }
 
 

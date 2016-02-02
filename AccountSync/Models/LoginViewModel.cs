@@ -34,6 +34,7 @@ namespace AccountSync.Models
         public string UserID { get; set; }
 
         [Display(Name="密碼")]
+        [DataType(DataType.Password)]
         [Required]
         public string Password { get; set; }
 

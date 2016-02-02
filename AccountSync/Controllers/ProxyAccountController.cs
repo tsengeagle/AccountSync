@@ -31,38 +31,41 @@ namespace AccountSync.Controllers
 
         int pageSize = 15;
 
+        [Authorize]
         // GET: ProxyAccount
         public ActionResult Index(int page = 1)
         {
-            return RedirectToAction("Query");
+            //return RedirectToAction("Query");
 
-            //int currentPage = page < 1 ? 1 : page;
+            int currentPage = page < 1 ? 1 : page;
 
-            //var myAccount = DB_GEN_Repo.All().OrderBy(o => o.chUserID).ToArray();  // DB_GEN.GenProxyAccount.OrderBy(o => o.chUserID).ToArray();
-            //var proxyAccount = hluser_Repo.All().OrderBy(o => o.user).ToArray(); // hluser.passwd.OrderBy(o => o.user).ToArray();
+            var myAccount = DB_GEN_Repo.All().OrderBy(o => o.chUserID).ToArray();  // DB_GEN.GenProxyAccount.OrderBy(o => o.chUserID).ToArray();
+            var proxyAccount = hluser_Repo.All().OrderBy(o => o.user).ToArray(); // hluser.passwd.OrderBy(o => o.user).ToArray();
 
-            //var result = from his in myAccount
-            //             join mysql in proxyAccount
-            //             on his.chUserID equals mysql.user
-            //             select new Models.ProxyAccountViewModel()
-            //             {
-            //                 UserID = his.chUserID,
-            //                 UserName = his.chUserName,
-            //                 DeptName = his.chDeptName,
-            //                 dtEndDate = his.dtEndDate,
-            //                 NoteID = his.chEMail,
-            //                 isSynced = his.chXData.ToLower() == mysql.password.ToLower() ? true : false,
-            //                 isEnabled = !mysql.enabled
-            //             };
+            var result = from his in myAccount
+                         join mysql in proxyAccount
+                         on his.chUserID equals mysql.user
+                         select new Models.ProxyAccountViewModel()
+                         {
+                             UserID = his.chUserID,
+                             UserName = his.chUserName,
+                             DeptName = his.chDeptName,
+                             dtEndDate = his.dtEndDate,
+                             NoteID = his.chEMail,
+                             isSynced = his.chXData.ToLower() == mysql.password.ToLower() ? true : false,
+                             isEnabled = !mysql.enabled
+                         };
 
-            //return View(result.ToPagedList(currentPage, pageSize));
+            return View(result.ToPagedList(currentPage, pageSize));
         }
 
+        [AllowAnonymous]
         public ActionResult Query()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Query(string UserID)
         {
@@ -142,6 +145,7 @@ namespace AccountSync.Controllers
             return View("PasswordChanged");
         }
 
+        [Authorize]
         public ActionResult ResetPassword(string UserID)
         {
             //TODO 為了相容於六碼ID，所以目前所有UserID都有先trim過，後面有空要改為repo樣式來統一整個邏輯

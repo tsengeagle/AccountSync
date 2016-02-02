@@ -18,6 +18,9 @@
 <table class="table">
     <tr>
         <th>
+            重設密碼
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().isSynced)
         </th>
         <th>
@@ -44,6 +47,9 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.ActionLink("重置密碼", "ResetPassword", new { UserID = item.UserID })
+            </td>
             <td>
                 @{
         if (item.isSynced)

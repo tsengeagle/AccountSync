@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>密碼會由系統提供預設值</h4>
         <hr />
@@ -69,4 +69,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $("#dtEndDate").datepicker({})
+    </script>
 }

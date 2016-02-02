@@ -241,6 +241,7 @@
     <Compile Include="Models\hluser\RepositoryIQueryableExtensions.cs">
       <DependentUpon>IRepository.EF6.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\NewAccountViewModel.cs" />
     <Compile Include="Models\ProxyAccountViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -423,6 +424,8 @@
     <Content Include="Views\Shared\PasswordReseted.cshtml" />
     <Content Include="Views\ProxyAccount\Index.cshtml" />
     <Content Include="Views\ProxyAccount\NewAccount.cshtml" />
+    <Content Include="Views\Shared\AccountAdded.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

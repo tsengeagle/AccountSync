@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountSync", "AccountSync\AccountSync.csproj", "{04F56D37-C6BD-4727-8D37-B2EBC386DA5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagement", "AccountManagement\AccountManagement.csproj", "{4F89D582-FD89-4E04-8046-4294F4B9AFBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{04F56D37-C6BD-4727-8D37-B2EBC386DA5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04F56D37-C6BD-4727-8D37-B2EBC386DA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04F56D37-C6BD-4727-8D37-B2EBC386DA5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F89D582-FD89-4E04-8046-4294F4B9AFBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F89D582-FD89-4E04-8046-4294F4B9AFBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F89D582-FD89-4E04-8046-4294F4B9AFBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F89D582-FD89-4E04-8046-4294F4B9AFBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

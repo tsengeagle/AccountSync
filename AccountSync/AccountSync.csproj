@@ -143,6 +143,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountPagedListViewModel.cs" />
+    <Compile Include="Models\AccountParameterViewModel.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\DB_GEN\DB_GEN.Context.cs">
       <AutoGen>True</AutoGen>
@@ -413,8 +415,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\MD5Test.cshtml" />
-    <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\ProxyAccount\Index.cshtml" />
     <Content Include="Views\ProxyAccount\QueryResult.cshtml" />
     <Content Include="Views\Shared\AccountNotFound.cshtml" />
@@ -427,6 +427,8 @@
     <Content Include="Views\ProxyManagement\NewAccount.cshtml" />
     <Content Include="Views\Shared\AccountAdded.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Shared\AccountFilter.cshtml" />
+    <Content Include="Views\ProxyManagement\AccountList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

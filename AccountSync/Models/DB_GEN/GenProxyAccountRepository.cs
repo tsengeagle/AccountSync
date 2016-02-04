@@ -31,9 +31,12 @@ namespace AccountSync.Models.DB_GEN
         }
 
 
-        internal List<string> GetDeptList()
+        internal List<string> GetDeptListForDropDownList()
         {
-            return this.All().Select(s => s.chDeptName).Distinct().ToList();
+            var result = this.All().Select(s => s.chDeptName).Distinct().ToList();
+            result.Add("<¥¼¿ï¾Ü>");
+            result.Sort();
+            return result;
         }
     }
 

@@ -13,6 +13,8 @@
     @*@Html.ActionLink("Create New", "Create")*@
 </p>
 
+
+
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 
 <table class="table">
@@ -30,8 +32,8 @@
             @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().UserID)
-        </th>*@
+                @Html.DisplayNameFor(model => model.FirstOrDefault().UserID)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().DeptName)
         </th>
@@ -78,8 +80,8 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.UserID)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.DeptName)
             </td>

@@ -25,27 +25,29 @@ namespace AccountSync.Controllers
         // GET: ProxyManagement
         public ActionResult Index(int page = 1)
         {
+            return RedirectToAction("AccountList");
 
-            int currentPage = page < 1 ? 1 : page;
 
-            var myAccount = DB_GEN_Repo.All().OrderBy(o => o.chUserID).ToArray();  // DB_GEN.GenProxyAccount.OrderBy(o => o.chUserID).ToArray();
-            var proxyAccount = hluser_Repo.All().OrderBy(o => o.user).ToArray(); // hluser.passwd.OrderBy(o => o.user).ToArray();
+            //int currentPage = page < 1 ? 1 : page;
 
-            var result = from his in myAccount
-                         join mysql in proxyAccount
-                         on his.chUserID equals mysql.user
-                         select new Models.ProxyAccountViewModel()
-                         {
-                             UserID = his.chUserID,
-                             UserName = his.chUserName,
-                             DeptName = his.chDeptName,
-                             dtEndDate = his.dtEndDate,
-                             NoteID = his.chEMail,
-                             isSynced = his.chXData.ToLower() == mysql.password.ToLower() ? true : false,
-                             isEnabled = !mysql.enabled
-                         };
+            //var myAccount = DB_GEN_Repo.All().OrderBy(o => o.chUserID).ToArray();  // DB_GEN.GenProxyAccount.OrderBy(o => o.chUserID).ToArray();
+            //var proxyAccount = hluser_Repo.All().OrderBy(o => o.user).ToArray(); // hluser.passwd.OrderBy(o => o.user).ToArray();
 
-            return View(result.ToPagedList(currentPage, pageSize));
+            //var result = from his in myAccount
+            //             join mysql in proxyAccount
+            //             on his.chUserID equals mysql.user
+            //             select new Models.ProxyAccountViewModel()
+            //             {
+            //                 UserID = his.chUserID,
+            //                 UserName = his.chUserName,
+            //                 DeptName = his.chDeptName,
+            //                 dtEndDate = his.dtEndDate,
+            //                 NoteID = his.chEMail,
+            //                 isSynced = his.chXData.ToLower() == mysql.password.ToLower() ? true : false,
+            //                 isEnabled = !mysql.enabled
+            //             };
+
+            //return View(result.ToPagedList(currentPage, pageSize));
             //var allList=
         }
 
@@ -59,7 +61,6 @@ namespace AccountSync.Controllers
         [HttpPost]
         public ActionResult NewAccount(Models.NewAccountViewModel model)
         {
-            //TODO 新增邏輯還沒弄完
             if (!ModelState.IsValid)
             {
                 return View();
@@ -124,5 +125,51 @@ namespace AccountSync.Controllers
             return View("PasswordReseted", myAccount);
         }
 
+
+        public ActionResult AccountList(int page = 1)
+        {
+
+            var ListViewModel = new Models.AccountPagedListViewModel();
+            ListViewModel.CurrentPage = page < 1 ? 1 : page;
+            ListViewModel.PageSize = ListViewModel.PageSize < 1 ? pageSize : ListViewModel.PageSize;
+
+            ListViewModel.Accounts = DB_GEN_Repo.All().OrderBy(o => o.chUserID).ToPagedList(ListViewModel.CurrentPage, ListViewModel.PageSize);
+            ListViewModel.Depts = new SelectList(DB_GEN_Repo.GetDeptListForDropDownList(), "<未選擇>");
+
+            return View(ListViewModel);
+
+        }
+
+        [HttpPost]
+        public ActionResult AccountList(Models.AccountPagedListViewModel model)
+        {
+
+            var result = DB_GEN_Repo.All();
+            if (!string.IsNullOrWhiteSpace(model.Parameter.ByUserID))
+            {
+                result = result.Where(w => w.chUserID.Contains(model.Parameter.ByUserID));
+            }
+            if (!string.IsNullOrWhiteSpace(model.Parameter.ByUserName))
+            {
+                result = result.Where(w => w.chUserName.Contains(model.Parameter.ByUserName));
+            }
+            if ((!string.IsNullOrWhiteSpace(model.Parameter.ByDeptName)) && (model.Parameter.ByDeptName != "<未選擇>"))
+            {
+                result = result.Where(w => w.chDeptName.Contains(model.Parameter.ByDeptName));
+            }
+
+            var depts = result.Select(s => s.chDeptName).Distinct().ToList();
+            depts.Add("<未選擇>");
+            depts.Sort();
+            model.Depts = new SelectList(depts, "<未選擇>");
+
+            model.CurrentPage = model.CurrentPage < 1 ? 1 : model.CurrentPage;
+            model.PageSize = model.PageSize < 1 ? pageSize : model.PageSize;
+
+            model.Accounts = result.OrderBy(o => o.chUserID).ToPagedList(model.CurrentPage, model.PageSize);
+
+            return View(model);
+
+        }
     }
 }

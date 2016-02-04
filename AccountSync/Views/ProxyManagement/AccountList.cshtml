@@ -1,0 +1,126 @@
+﻿@model AccountSync.Models.AccountPagedListViewModel
+
+@{
+    ViewBag.Title = "AccountList";
+}
+
+<h2>AccountList</h2>
+
+@*@Html.Partial("AccountFilter", Model.Parameter)*@
+
+
+@using (Html.BeginForm("AccountList", "ProxyManagement", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "AccountFilter" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>依下列條件</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Parameter.ByUserID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Parameter.ByUserID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Parameter.ByUserID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Parameter.ByUserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Parameter.ByUserName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Parameter.ByUserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Parameter.ByDeptName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Parameter.ByDeptName, (SelectList)Model.Depts, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Parameter.ByDeptName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="過濾" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("重設條件", "AccountList")
+            </div>
+        </div>
+    </div>
+}
+
+
+@Html.PagedListPager(Model.Accounts, page => Url.Action("AccountList", new { page }))
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.LabelFor(m => m.Accounts.FirstOrDefault().chUserID)
+        </th>
+        <th>
+            @Html.LabelFor(m => m.Accounts.FirstOrDefault().chUserName)
+        </th>
+        <th>
+            @Html.LabelFor(m => m.Accounts.FirstOrDefault().chDeptName)
+        </th>
+        <th>
+            @Html.LabelFor(m => m.Accounts.FirstOrDefault().chEMail)
+        </th>
+        <th>
+            @Html.LabelFor(m => m.Accounts.FirstOrDefault().dtEndDate)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Accounts)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.chUserID)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.chUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.chDeptName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.chEMail)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.dtEndDate)
+            </td>
+        </tr>
+    }
+</table>
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $('.pagination>li>a[href]').each(function (i, item) {
+                var link = $(item).attr('href').toLowerCase();
+                var page = link.replace('/proxymanagement/accountlist?page=', '');
+                $(item).attr('href', '#').click(function () { postPage(page); });
+
+            });
+        });
+
+        function postPage(page) {
+            var targetFormId = '#AccountFilter';
+            if ($(targetFormId).size() > 0) {
+                $('<input>')
+                    .attr({ type: 'hidden', id: 'CurrentPage', name: 'CurrentPage', value: page })
+                    .appendTo($(targetFormId));
+                $(targetFormId).submit();
+            }
+        };
+
+    </script>
+}

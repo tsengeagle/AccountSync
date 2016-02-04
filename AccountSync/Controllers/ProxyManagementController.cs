@@ -11,11 +11,13 @@ namespace AccountSync.Controllers
     {
         AccountSync.Models.DB_GEN.GenProxyAccountRepository DB_GEN_Repo;
         AccountSync.Models.hluser.passwdRepository hluser_Repo;
+        AccountSync.Models.hluser.passwdRepository MedProxy_Repo;
 
         public ProxyManagementController()
         {
             DB_GEN_Repo = Models.DB_GEN.RepositoryHelper.GetGenProxyAccountRepository();
             hluser_Repo = Models.hluser.RepositoryHelper.GetpasswdRepository();
+            MedProxy_Repo = Models.hluser.RepositoryHelper.GetpasswdRepository();
         }
 
         int pageSize = 20;
@@ -78,6 +80,48 @@ namespace AccountSync.Controllers
             DB_GEN_Repo.UnitOfWork.Commit();
 
             return View("AccountAdded", model);
+        }
+
+        public ActionResult ResetPassword(string UserID)
+        {
+            //TODO 為了相容於六碼ID，所以目前所有UserID都有先trim過，後面有空要改為repo樣式來統一整個邏輯
+            var myAccount = DB_GEN_Repo.GetUser(UserID); // DB_GEN.GenProxyAccount.Find(UserID.Trim());
+            if (myAccount == null)
+            {
+                return View("AccountNotFound");
+            }
+
+            Random rand = new Random(DateTime.Now.Millisecond);
+            string randPassword = "MF" + Convert.ToString(rand.Next(10000000, 99999999)).Substring(0, 4);
+            ViewData.Add("NewPassword", randPassword);
+
+            string NewPasswordMD5 = DB_GEN_Repo.GetMD5(randPassword); //DB_GEN.GetMD5(randPassword).First().ToUpper();
+            myAccount.chXData = NewPasswordMD5;
+            myAccount.dtLastModified = DateTime.Now;
+            myAccount.chXDataHosp = "Web";
+
+            DB_GEN_Repo.UnitOfWork.Commit(); // DB_GEN.SaveChanges();
+
+            var myProxyAccount = hluser_Repo.GetUser(UserID); // hluser.passwd.Find(UserID.Trim());
+            if (myProxyAccount == null)
+            {
+                return View("AccountNotFound");
+            }
+
+            myProxyAccount.password = NewPasswordMD5.ToLower();
+            myProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Reset by web";
+            hluser_Repo.UnitOfWork.Commit(); // hluser.SaveChanges();
+
+            var myMedProxyAccount = MedProxy_Repo.GetUser(UserID); // MedProxy.passwd.Find(UserID.Trim());
+            if (myMedProxyAccount == null)
+            {
+                return View("AccountNotFound");
+            }
+            myMedProxyAccount.password = NewPasswordMD5.ToLower();
+            myMedProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Reset by web";
+            MedProxy_Repo.UnitOfWork.Commit(); // MedProxy.SaveChanges();
+
+            return View("PasswordReseted", myAccount);
         }
 
     }

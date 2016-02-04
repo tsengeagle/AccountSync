@@ -25,7 +25,6 @@ namespace AccountSync.Controllers
 
         }
 
-        [Authorize]
         // GET: ProxyAccount
         public ActionResult Index(int page = 1)
         {
@@ -120,7 +119,7 @@ namespace AccountSync.Controllers
             return View("PasswordChanged");
         }
 
-        [Authorize]
+        
         public ActionResult ResetPassword(string UserID)
         {
             //TODO 為了相容於六碼ID，所以目前所有UserID都有先trim過，後面有空要改為repo樣式來統一整個邏輯

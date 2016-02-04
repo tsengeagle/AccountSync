@@ -34,11 +34,11 @@ namespace AccountSync.Controllers
             return View();
         }
 
-        [AllowAnonymous]
-        public ActionResult Query()
-        {
-            return RedirectToAction("Index");
-        }
+        //[AllowAnonymous]
+        //public ActionResult Query()
+        //{
+        //    return RedirectToAction("Index");
+        //}
 
         [AllowAnonymous]
         [HttpPost]

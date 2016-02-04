@@ -11,8 +11,7 @@ namespace AccountSync.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("Query", "ProxyAccount");
-            //return View();
+            return View();
         }
 
         [AllowAnonymous]

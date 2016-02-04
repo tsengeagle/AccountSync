@@ -46,5 +46,39 @@ namespace AccountSync.Controllers
             return View(result.ToPagedList(currentPage, pageSize));
             //var allList=
         }
+
+        [Authorize]
+        public ActionResult NewAccount()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult NewAccount(Models.NewAccountViewModel model)
+        {
+            //TODO 新增邏輯還沒弄完
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            Models.DB_GEN.GenProxyAccount newAccount = new Models.DB_GEN.GenProxyAccount();
+            newAccount.chUserID = model.UserID;
+            newAccount.chUserName = model.UserName;
+            newAccount.chDeptName = model.DeptName;
+            newAccount.chEMail = model.NoteID;
+            newAccount.dtEndDate = model.dtEndDate;
+            newAccount.dtLastModified = DateTime.Now;
+            newAccount.chXData = DB_GEN_Repo.GetMD5(model.UserID);
+            newAccount.chXDataHosp = "Web";
+
+            DB_GEN_Repo.Add(newAccount);
+
+            DB_GEN_Repo.UnitOfWork.Commit();
+
+            return View("AccountAdded", model);
+        }
+
     }
 }

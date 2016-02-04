@@ -19,6 +19,8 @@ namespace AccountSync.Models
             }
             else
             {
+                var password = DB_GEN_Repo.GetMD5(this.Password.Trim()).ToUpper();
+
                 if (user.chXData.ToUpper()!=DB_GEN_Repo.GetMD5(this.Password).ToUpper())
                 {
                     yield return new ValidationResult("密碼錯誤", new string[] { "密碼" });

@@ -10,7 +10,7 @@ namespace AccountSync.Models
     public class AccountPagedListViewModel
     {
         public AccountParameterViewModel Parameter { get; set; }
-        public IPagedList<DB_GEN.GenProxyAccount> Accounts { get; set; }
+        public IPagedList<ProxyAccountViewModel> Accounts { get; set; }
         public int PageSize { get; set; }
         public int CurrentPage { get; set; }
         public SelectList Depts { get; set; }

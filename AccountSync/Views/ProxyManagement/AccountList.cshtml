@@ -4,7 +4,7 @@
     ViewBag.Title = "AccountList";
 }
 
-<h2>AccountList</h2>
+<h2>帳號總覽</h2>
 
 @*@Html.Partial("AccountFilter", Model.Parameter)*@
 
@@ -14,8 +14,8 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>依下列條件</h4>
         <hr />
+        <h4>依下列條件</h4>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
@@ -45,60 +45,93 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="過濾" class="btn btn-default" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
                 @Html.ActionLink("重設條件", "AccountList")
             </div>
         </div>
     </div>
 }
 
+<hr />
+<div class="form-horizontal">
+    @Html.PagedListPager(Model.Accounts, page => Url.Action("AccountList", new { page }))
 
-@Html.PagedListPager(Model.Accounts, page => Url.Action("AccountList", new { page }))
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.LabelFor(m => m.Accounts.FirstOrDefault().chUserID)
-        </th>
-        <th>
-            @Html.LabelFor(m => m.Accounts.FirstOrDefault().chUserName)
-        </th>
-        <th>
-            @Html.LabelFor(m => m.Accounts.FirstOrDefault().chDeptName)
-        </th>
-        <th>
-            @Html.LabelFor(m => m.Accounts.FirstOrDefault().chEMail)
-        </th>
-        <th>
-            @Html.LabelFor(m => m.Accounts.FirstOrDefault().dtEndDate)
-        </th>
-    </tr>
-
-    @foreach (var item in Model.Accounts)
-    {
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(m => item.chUserID)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.chUserName)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.chDeptName)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.chEMail)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.dtEndDate)
-            </td>
+            <th>
+                重設密碼
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Accounts.FirstOrDefault().isSynced)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Accounts.FirstOrDefault().isEnabled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Accounts.FirstOrDefault().UserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Accounts.FirstOrDefault().UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Accounts.FirstOrDefault().DeptName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Accounts.FirstOrDefault().NoteID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Accounts.FirstOrDefault().dtEndDate)
+            </th>
         </tr>
-    }
-</table>
 
+        @foreach (var item in Model.Accounts)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("重置密碼", "ResetPassword", new { UserID = item.UserID })
+                </td>
+                <td>
+                    @{
+            if (item.isSynced)
+            {
+                <span class="glyphicon glyphicon-ok"></span>
+            }
+            else
+            {
+                <span class="glyphicon glyphicon-remove"></span>
+            }
+                    }
+                </td>
+                <td>
+                    @{
+            if (item.isEnabled)
+            {
+                <span class="glyphicon glyphicon-ok"></span>
+            }
+            else
+            {
+                <span class="glyphicon glyphicon-remove"></span>
+            }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.UserID)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.DeptName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.NoteID)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.dtEndDate)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
 
 @section scripts
 {

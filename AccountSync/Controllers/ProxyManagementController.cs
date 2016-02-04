@@ -125,7 +125,7 @@ namespace AccountSync.Controllers
             return View("PasswordReseted", myAccount);
         }
 
-
+        [Authorize]
         public ActionResult AccountList(int page = 1)
         {
 
@@ -133,13 +133,32 @@ namespace AccountSync.Controllers
             ListViewModel.CurrentPage = page < 1 ? 1 : page;
             ListViewModel.PageSize = ListViewModel.PageSize < 1 ? pageSize : ListViewModel.PageSize;
 
-            ListViewModel.Accounts = DB_GEN_Repo.All().OrderBy(o => o.chUserID).ToPagedList(ListViewModel.CurrentPage, ListViewModel.PageSize);
+            var myAccount = DB_GEN_Repo.All().OrderBy(o => o.chUserID).ToArray();  // DB_GEN.GenProxyAccount.OrderBy(o => o.chUserID).ToArray();
+            var proxyAccount = hluser_Repo.All().OrderBy(o => o.user).ToArray(); // hluser.passwd.OrderBy(o => o.user).ToArray();
+
+            var result = from his in myAccount
+                         join mysql in proxyAccount
+                         on his.chUserID equals mysql.user
+                         select new Models.ProxyAccountViewModel()
+                         {
+                             UserID = his.chUserID,
+                             UserName = his.chUserName,
+                             DeptName = his.chDeptName,
+                             dtEndDate = his.dtEndDate,
+                             NoteID = his.chEMail,
+                             isSynced = his.chXData.ToLower() == mysql.password.ToLower() ? true : false,
+                             isEnabled = !mysql.enabled
+                         };
+
+            ListViewModel.Accounts = result.OrderBy(o => o.UserID).ToPagedList(ListViewModel.CurrentPage, ListViewModel.PageSize);
+            //ListViewModel.Accounts = DB_GEN_Repo.All().OrderBy(o => o.chUserID).ToPagedList(ListViewModel.CurrentPage, ListViewModel.PageSize);
             ListViewModel.Depts = new SelectList(DB_GEN_Repo.GetDeptListForDropDownList(), "<未選擇>");
 
             return View(ListViewModel);
 
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult AccountList(Models.AccountPagedListViewModel model)
         {
@@ -166,7 +185,22 @@ namespace AccountSync.Controllers
             model.CurrentPage = model.CurrentPage < 1 ? 1 : model.CurrentPage;
             model.PageSize = model.PageSize < 1 ? pageSize : model.PageSize;
 
-            model.Accounts = result.OrderBy(o => o.chUserID).ToPagedList(model.CurrentPage, model.PageSize);
+            var proxyAccount = hluser_Repo.All().OrderBy(o => o.user).ToArray(); // hluser.passwd.OrderBy(o => o.user).ToArray();
+            var vm = from his in result.ToArray()
+                     join mysql in proxyAccount
+                     on his.chUserID equals mysql.user
+                     select new Models.ProxyAccountViewModel()
+                     {
+                         UserID = his.chUserID,
+                         UserName = his.chUserName,
+                         DeptName = his.chDeptName,
+                         dtEndDate = his.dtEndDate,
+                         NoteID = his.chEMail,
+                         isSynced = his.chXData.ToLower() == mysql.password.ToLower() ? true : false,
+                         isEnabled = !mysql.enabled
+                     };
+
+            model.Accounts = vm.OrderBy(o => o.UserID).ToPagedList(model.CurrentPage, model.PageSize);
 
             return View(model);
 

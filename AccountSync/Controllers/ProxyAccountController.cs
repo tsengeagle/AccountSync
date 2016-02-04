@@ -9,11 +9,7 @@ namespace AccountSync.Controllers
 {
     public class ProxyAccountController : Controller
     {
-        //Models.DB_GENEntities DB_GEN = new Models.DB_GENEntities();
         AccountSync.Models.DB_GEN.GenProxyAccountRepository DB_GEN_Repo;
-
-        //hluserEntities hluser = new hluserEntities();
-        //hluserEntities MedProxy = new hluserEntities();
         AccountSync.Models.hluser.passwdRepository hluser_Repo;
         AccountSync.Models.hluser.passwdRepository MedProxy_Repo;
 
@@ -37,32 +33,13 @@ namespace AccountSync.Controllers
         {
             //return RedirectToAction("Query");
 
-            int currentPage = page < 1 ? 1 : page;
-
-            var myAccount = DB_GEN_Repo.All().OrderBy(o => o.chUserID).ToArray();  // DB_GEN.GenProxyAccount.OrderBy(o => o.chUserID).ToArray();
-            var proxyAccount = hluser_Repo.All().OrderBy(o => o.user).ToArray(); // hluser.passwd.OrderBy(o => o.user).ToArray();
-
-            var result = from his in myAccount
-                         join mysql in proxyAccount
-                         on his.chUserID equals mysql.user
-                         select new Models.ProxyAccountViewModel()
-                         {
-                             UserID = his.chUserID,
-                             UserName = his.chUserName,
-                             DeptName = his.chDeptName,
-                             dtEndDate = his.dtEndDate,
-                             NoteID = his.chEMail,
-                             isSynced = his.chXData.ToLower() == mysql.password.ToLower() ? true : false,
-                             isEnabled = !mysql.enabled
-                         };
-
-            return View(result.ToPagedList(currentPage, pageSize));
+            return View();
         }
 
         [AllowAnonymous]
         public ActionResult Query()
         {
-            return View();
+            return RedirectToAction("Index");
         }
 
         [AllowAnonymous]
@@ -221,6 +198,10 @@ namespace AccountSync.Controllers
             return View("AccountAdded",model);
         }
 
+        public ActionResult QueryAccountList()
+        {
+            return View();
+        }
     }
 
 

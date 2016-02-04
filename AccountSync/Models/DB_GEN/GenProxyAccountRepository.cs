@@ -30,7 +30,12 @@ namespace AccountSync.Models.DB_GEN
             return DB_GEN.GetMD5(p).First().ToUpper();
         }
 
-	}
+
+        internal List<string> GetDeptList()
+        {
+            return this.All().Select(s => s.chDeptName).Distinct().ToList();
+        }
+    }
 
 	public  interface IGenProxyAccountRepository : IRepository<GenProxyAccount>
 	{

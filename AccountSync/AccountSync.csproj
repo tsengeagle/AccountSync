@@ -139,6 +139,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProxyAccountController.cs" />
+    <Compile Include="Controllers\ProxyManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -243,6 +244,8 @@
     </Compile>
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\NewAccountViewModel.cs" />
+    <Compile Include="Models\ProxyAccountPagedListViewModel.cs" />
+    <Compile Include="Models\ProxyAccountSearchViewModel.cs" />
     <Compile Include="Models\ProxyAccountViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -422,10 +425,11 @@
     <Content Include="Views\Shared\PasswordIncorrect.cshtml" />
     <Content Include="Views\Shared\PasswordChanged.cshtml" />
     <Content Include="Views\Shared\PasswordReseted.cshtml" />
-    <Content Include="Views\ProxyAccount\Index.cshtml" />
+    <Content Include="Views\ProxyManagement\Index.cshtml" />
     <Content Include="Views\ProxyAccount\NewAccount.cshtml" />
     <Content Include="Views\Shared\AccountAdded.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Shared\QueryAccountList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

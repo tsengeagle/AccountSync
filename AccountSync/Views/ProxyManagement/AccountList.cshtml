@@ -8,6 +8,7 @@
 
 @*@Html.Partial("AccountFilter", Model.Parameter)*@
 
+@Html.ActionLink("新增帳號", "NewAccount")
 
 @using (Html.BeginForm("AccountList", "ProxyManagement", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "AccountFilter" }))
 {

@@ -1,4 +1,4 @@
-﻿@model AccountSync.Models.DB_GEN.GenProxyAccount
+﻿@model AccountSync.Models.AccountDetailViewModel
 
 @{
     ViewBag.Title = "查詢結果";
@@ -75,14 +75,27 @@
             @Html.DisplayFor(model => model.chUserType)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.chXData)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chXData)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chHisXData)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chHisXData)
+        </dd>
     </dl>
 </div>
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.chUserID }) |
     @Html.ActionLink("Back to List", "Index")*@
     @Html.ActionLink("修改密碼", "ChangePassword", new {UserID=Model.chUserID })
-    |
-    @Html.ActionLink("重置密碼", "ResetPassword", new { UserID=Model.chUserID})
     <br />
     @Html.ActionLink("回到首頁","Index")
 

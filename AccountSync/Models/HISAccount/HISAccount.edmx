@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_GENModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GenUserProfile1">
+          <Key>
+            <PropertyRef Name="chUserID" />
+          </Key>
+          <Property Name="chUserID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="chUserPass" Type="char" MaxLength="6" />
+          <Property Name="chUserName" Type="char" MaxLength="10" />
+          <Property Name="chUserOPD" Type="char" MaxLength="1" />
+          <Property Name="chUserAMD" Type="char" MaxLength="1" />
+          <Property Name="chUserMrbasic" Type="char" MaxLength="1" />
+          <Property Name="chUserMeg" Type="char" MaxLength="1" />
+          <Property Name="chUserGro" Type="char" MaxLength="3" />
+          <Property Name="chStartDate" Type="char" MaxLength="7" />
+          <Property Name="chEndDate" Type="char" MaxLength="7" />
+          <Property Name="chLogInDT" Type="char" MaxLength="13" />
+          <Property Name="chLogOutDT" Type="char" MaxLength="13" />
+          <Property Name="chLogInStat" Type="char" MaxLength="20" />
+          <Property Name="chUserSector" Type="char" MaxLength="10" />
+          <Property Name="chUserAcc" Type="char" MaxLength="1" />
+          <Property Name="chUserIPH" Type="char" MaxLength="1" />
+          <Property Name="chUserRad" Type="char" MaxLength="1" />
+          <Property Name="chOffStartDate" Type="char" MaxLength="11" />
+          <Property Name="chOffEndDate" Type="char" MaxLength="11" />
+          <Property Name="chXData" Type="varchar" MaxLength="32" />
+          <Property Name="chRandomKey" Type="varchar" MaxLength="10" />
+          <Property Name="chUserOtherKey" Type="varchar" MaxLength="20" />
+          <Property Name="chLastModifyID" Type="varchar" MaxLength="10" />
+          <Property Name="sdLastModifyDate" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="DB_GENModel1StoreContainer">
+          <EntitySet Name="GenUserProfile1" EntityType="Self.GenUserProfile1" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_GENModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="GenUserProfile1">
+          <Key>
+            <PropertyRef Name="chUserID" />
+          </Key>
+          <Property Name="chUserID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="chUserPass" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="chUserName" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="chUserOPD" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="chUserAMD" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="chUserMrbasic" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="chUserMeg" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="chUserGro" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="chStartDate" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="chEndDate" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="chLogInDT" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="chLogOutDT" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="chLogInStat" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="chUserSector" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="chUserAcc" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="chUserIPH" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="chUserRad" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="chOffStartDate" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="chOffEndDate" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="chXData" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="chRandomKey" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="chUserOtherKey" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="chLastModifyID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sdLastModifyDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="HisEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GenUserProfile1" EntityType="Self.GenUserProfile1" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_GENModel1StoreContainer" CdmEntityContainer="HisEntities">
+          <EntitySetMapping Name="GenUserProfile1">
+            <EntityTypeMapping TypeName="DB_GENModel1.GenUserProfile1">
+              <MappingFragment StoreEntitySet="GenUserProfile1">
+                <ScalarProperty Name="chUserID" ColumnName="chUserID" />
+                <ScalarProperty Name="chUserPass" ColumnName="chUserPass" />
+                <ScalarProperty Name="chUserName" ColumnName="chUserName" />
+                <ScalarProperty Name="chUserOPD" ColumnName="chUserOPD" />
+                <ScalarProperty Name="chUserAMD" ColumnName="chUserAMD" />
+                <ScalarProperty Name="chUserMrbasic" ColumnName="chUserMrbasic" />
+                <ScalarProperty Name="chUserMeg" ColumnName="chUserMeg" />
+                <ScalarProperty Name="chUserGro" ColumnName="chUserGro" />
+                <ScalarProperty Name="chStartDate" ColumnName="chStartDate" />
+                <ScalarProperty Name="chEndDate" ColumnName="chEndDate" />
+                <ScalarProperty Name="chLogInDT" ColumnName="chLogInDT" />
+                <ScalarProperty Name="chLogOutDT" ColumnName="chLogOutDT" />
+                <ScalarProperty Name="chLogInStat" ColumnName="chLogInStat" />
+                <ScalarProperty Name="chUserSector" ColumnName="chUserSector" />
+                <ScalarProperty Name="chUserAcc" ColumnName="chUserAcc" />
+                <ScalarProperty Name="chUserIPH" ColumnName="chUserIPH" />
+                <ScalarProperty Name="chUserRad" ColumnName="chUserRad" />
+                <ScalarProperty Name="chOffStartDate" ColumnName="chOffStartDate" />
+                <ScalarProperty Name="chOffEndDate" ColumnName="chOffEndDate" />
+                <ScalarProperty Name="chXData" ColumnName="chXData" />
+                <ScalarProperty Name="chRandomKey" ColumnName="chRandomKey" />
+                <ScalarProperty Name="chUserOtherKey" ColumnName="chUserOtherKey" />
+                <ScalarProperty Name="chLastModifyID" ColumnName="chLastModifyID" />
+                <ScalarProperty Name="sdLastModifyDate" ColumnName="sdLastModifyDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

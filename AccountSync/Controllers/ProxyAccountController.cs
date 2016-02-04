@@ -13,6 +13,8 @@ namespace AccountSync.Controllers
         AccountSync.Models.hluser.passwdRepository hluser_Repo;
         AccountSync.Models.hluser.passwdRepository MedProxy_Repo;
 
+        AccountSync.Models.HISAccount.GenUserProfile1Repository HisAccountRepo;
+
         public ProxyAccountController()
         {
             DB_GEN_Repo = AccountSync.Models.DB_GEN.RepositoryHelper.GetGenProxyAccountRepository();
@@ -48,7 +50,70 @@ namespace AccountSync.Controllers
             {
                 return View("AccountNotFound");
             }
-            return View("QueryResult", myAccount);
+
+            string connToHis = "";
+            switch (myAccount.chXDataHosp.Trim())
+            {
+                case "HL":
+                    connToHis = "server=HLOPDSQL;user id=guid;password=gpwd;persistsecurityinfo=True;database=DB_GEN";
+                    break;
+                case "DL":
+                    connToHis = "server=DLOPDSQL;user id=guid;password=gpwd;persistsecurityinfo=True;database=DB_GEN";
+                    break;
+                case "XD":
+                    connToHis = "server=OPDSQL1;user id=guid;password=gpwd;persistsecurityinfo=True;database=DB_GEN";
+                    break;
+                case "TC":
+                    connToHis = "server=TCOPDSQL;user id=guid;password=gpwd;persistsecurityinfo=True;database=DB_GEN";
+                    break;
+                case "GS":
+                    connToHis = "server=GSSVR;user id=guid;password=gpwd;persistsecurityinfo=True;database=DB_GEN";
+                    break;
+                case "UL":
+                    connToHis = "server=ULSVR;user id=guid;password=gpwd;persistsecurityinfo=True;database=DB_GEN";
+                    break;
+                case "TL":
+                    connToHis = "server=TLSVR;user id=guid;password=gpwd;persistsecurityinfo=True;database=DB_GEN";
+                    break;
+                default:
+                    connToHis = "";
+                    break;
+            }
+
+            Models.AccountDetailViewModel detail = new Models.AccountDetailViewModel();
+            detail.chUserID = myAccount.chUserID;
+            detail.chUserName = myAccount.chUserName;
+            detail.chDeptName = myAccount.chDeptName;
+            detail.chEMail = myAccount.chEMail;
+            detail.chEndDate = myAccount.chEndDate;
+            detail.dtEndDate = myAccount.dtEndDate;
+            detail.dtLastModified = myAccount.dtLastModified;
+            detail.chXDataHosp = myAccount.chXDataHosp;
+            detail.chUserType = myAccount.chUserType;
+            detail.chXData = myAccount.chXData;
+            detail.chUserID10 = myAccount.chUserID10;
+
+            if (!string.IsNullOrWhiteSpace(connToHis))
+            {
+                AccountSync.Models.HISAccount.EFUnitOfWork hisUOW = new Models.HISAccount.EFUnitOfWork();
+                hisUOW.ConnectionString = connToHis;
+                HisAccountRepo = Models.HISAccount.RepositoryHelper.GetGenUserProfile1Repository(hisUOW);
+                var hisUser = HisAccountRepo.Where(w => (w.chUserID ==detail.chUserID10)).FirstOrDefault();
+                if (hisUser==null)
+                {
+                    detail.chHisXData = "HIS系統查不到帳號";
+                }
+                else
+                {
+                    detail.chHisXData = hisUser.chXData;
+                }
+            }
+            else
+            {
+                detail.chHisXData = "密碼不是來自特定院區";   
+            }
+            //return View("AccountDetail", myAccount);
+            return View("QueryResult", detail);
         }
 
         public ActionResult ChangePassword(string UserID)
@@ -119,7 +184,7 @@ namespace AccountSync.Controllers
             return View("PasswordChanged");
         }
 
-        
+
         public ActionResult ResetPassword(string UserID)
         {
             //TODO 為了相容於六碼ID，所以目前所有UserID都有先trim過，後面有空要改為repo樣式來統一整個邏輯

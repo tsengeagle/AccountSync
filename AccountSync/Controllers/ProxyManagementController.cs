@@ -17,7 +17,10 @@ namespace AccountSync.Controllers
         {
             DB_GEN_Repo = Models.DB_GEN.RepositoryHelper.GetGenProxyAccountRepository();
             hluser_Repo = Models.hluser.RepositoryHelper.GetpasswdRepository();
-            MedProxy_Repo = Models.hluser.RepositoryHelper.GetpasswdRepository();
+
+            AccountSync.Models.hluser.EFUnitOfWork medProxyUOW = new Models.hluser.EFUnitOfWork();
+            medProxyUOW.ConnectionString = "server=10.2.100.10;user id=guid;password=gpwd;persistsecurityinfo=True;database=hluser";
+            MedProxy_Repo = AccountSync.Models.hluser.RepositoryHelper.GetpasswdRepository(medProxyUOW);
         }
 
         int pageSize = 20;

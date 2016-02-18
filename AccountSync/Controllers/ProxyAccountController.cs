@@ -14,6 +14,7 @@ namespace AccountSync.Controllers
         AccountSync.Models.hluser.passwdRepository MedProxy_Repo;
 
         AccountSync.Models.HISAccount.GenUserProfile1Repository HisAccountRepo;
+        AccountSync.Models.HISAccount.GenDoctorTblRepository HisDoctorRepo;
 
         public ProxyAccountController()
         {
@@ -101,7 +102,24 @@ namespace AccountSync.Controllers
                 var hisUser = HisAccountRepo.Where(w => (w.chUserID ==detail.chUserID10)).FirstOrDefault();
                 if (hisUser==null)
                 {
-                    detail.chHisXData = "HIS系統查不到帳號";
+                    HisDoctorRepo = Models.HISAccount.RepositoryHelper.GetGenDoctorTblRepository(hisUOW);
+                    var hisDoctor = HisDoctorRepo.Where(w => (w.chIDNo == detail.chUserID10)).FirstOrDefault();
+                    if (hisDoctor==null)
+                    {
+                        detail.chHisXData = "HIS系統查不到帳號";
+                    }
+                    else
+                    {
+                        hisUser = HisAccountRepo.Where(w => (w.chUserID == hisDoctor.chDocNo)).FirstOrDefault();
+                        if (hisUser==null)
+                        {
+                            detail.chHisXData = "HIS系統查不到帳號";
+                        }
+                        else
+                        {
+                            detail.chHisXData = hisUser.chXData;
+                        }
+                    }
                 }
                 else
                 {

@@ -7,6 +7,20 @@ namespace AccountSync.Models.HISAccount
 			return new EFUnitOfWork();
 		}		
 		
+		public static GenDoctorTblRepository GetGenDoctorTblRepository()
+		{
+			var repository = new GenDoctorTblRepository();
+			repository.UnitOfWork = GetUnitOfWork();
+			return repository;
+		}
+
+		public static GenDoctorTblRepository GetGenDoctorTblRepository(IUnitOfWork unitOfWork)
+		{
+			var repository = new GenDoctorTblRepository();
+			repository.UnitOfWork = unitOfWork;
+			return repository;
+		}		
+
 		public static GenUserProfile1Repository GetGenUserProfile1Repository()
 		{
 			var repository = new GenUserProfile1Repository();

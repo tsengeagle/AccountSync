@@ -26,7 +26,7 @@ namespace AccountSync.Models
                     yield return new ValidationResult("密碼錯誤", new string[] { "密碼" });
                 }
             }
-            if ((user.chUserName != "林文德") || (user.chUserName != "潘靜瑩"))
+            if ((user.chUserName != "曾義格") && (user.chUserName != "蔡俊榮") && (user.chUserName != "林文德") && (user.chUserName != "潘靜瑩"))
             {
                 yield return new ValidationResult("無權限", new string[] { "權限" });
 

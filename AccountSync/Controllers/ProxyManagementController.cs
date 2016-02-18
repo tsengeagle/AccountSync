@@ -188,10 +188,12 @@ namespace AccountSync.Controllers
             model.CurrentPage = model.CurrentPage < 1 ? 1 : model.CurrentPage;
             model.PageSize = model.PageSize < 1 ? pageSize : model.PageSize;
 
-            var proxyAccount = hluser_Repo.All().OrderBy(o => o.user).ToArray(); // hluser.passwd.OrderBy(o => o.user).ToArray();
+            var proxyAccount = MedProxy_Repo.All().OrderBy(o => o.user).ToArray(); // hluser.passwd.OrderBy(o => o.user).ToArray();
             var vm = from his in result.ToArray()
                      join mysql in proxyAccount
-                     on his.chUserID equals mysql.user
+                     on his.chUserID.Trim() equals mysql.user.Trim()
+                     into mysqlJoin
+                     from mysql in mysqlJoin.DefaultIfEmpty()
                      select new Models.ProxyAccountViewModel()
                      {
                          UserID = his.chUserID,
@@ -199,8 +201,8 @@ namespace AccountSync.Controllers
                          DeptName = his.chDeptName,
                          dtEndDate = his.dtEndDate,
                          NoteID = his.chEMail,
-                         isSynced = his.chXData.ToLower() == mysql.password.ToLower() ? true : false,
-                         isEnabled = !mysql.enabled
+                         isSynced = mysql == null ? false : his.chXData.ToLower() == mysql.password.ToLower() ? true : false,
+                         isEnabled = mysql == null ? false : !mysql.enabled
                      };
 
             model.Accounts = vm.OrderBy(o => o.UserID).ToPagedList(model.CurrentPage, model.PageSize);

@@ -207,6 +207,12 @@
     <Compile Include="Models\HISAccount\EFUnitOfWork.cs">
       <DependentUpon>IRepository.EF6.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HISAccount\GenDoctorTbl.cs">
+      <DependentUpon>HISAccount.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HISAccount\GenDoctorTblRepository.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HISAccount\GenUserProfile1.cs">
       <DependentUpon>HISAccount.tt</DependentUpon>
     </Compile>

@@ -26,5 +26,6 @@ namespace AccountSync.Models.HISAccount
         }
     
         public virtual DbSet<GenUserProfile1> GenUserProfile1 { get; set; }
+        public virtual DbSet<GenDoctorTbl> GenDoctorTbl { get; set; }
     }
 }

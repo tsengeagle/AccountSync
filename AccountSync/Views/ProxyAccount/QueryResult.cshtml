@@ -83,20 +83,18 @@
         </dd>
     </dl>
 </div>
-<div class="row">
+<div class="row text-center">
     <div class="col-xs-12 col-sm-1">
         @Html.DisplayNameFor(model => model.HisAccounts.FirstOrDefault().UserID)
     </div>
     <div class="col-xs-12 col-sm-1">
         @Html.DisplayNameFor(model => model.HisAccounts.FirstOrDefault().UserName)
     </div>
-    <div class="col-xs-12 col-sm-4">
+    <div class="col-xs-12 col-sm-6 text-left">
         @Html.DisplayNameFor(model => model.HisAccounts.FirstOrDefault().chXData)
     </div>
-    <div class="col-xs-12 ">
-
-    </div>
 </div>
+
 @{
     foreach (var item in Model.HisAccounts)
     {

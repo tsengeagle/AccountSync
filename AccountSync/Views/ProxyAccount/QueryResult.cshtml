@@ -67,14 +67,13 @@
             @Html.DisplayFor(model => model.chXDataHosp)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.chUserType)
-        </dt>
+        @*<dt>
+                @Html.DisplayNameFor(model => model.chUserType)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.chUserType)
-        </dd>
-
+            <dd>
+                @Html.DisplayFor(model => model.chUserType)
+            </dd>*@
         <dt>
             @Html.DisplayNameFor(model => model.chXData)
         </dt>
@@ -82,21 +81,33 @@
         <dd>
             @Html.DisplayFor(model => model.chXData)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.chHisXData)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.chHisXData)
-        </dd>
     </dl>
 </div>
+<div class="row">
+    <div class="col-xs-12 col-sm-1">
+        @Html.DisplayNameFor(model => model.HisAccounts.FirstOrDefault().UserID)
+    </div>
+    <div class="col-xs-12 col-sm-1">
+        @Html.DisplayNameFor(model => model.HisAccounts.FirstOrDefault().UserName)
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        @Html.DisplayNameFor(model => model.HisAccounts.FirstOrDefault().chXData)
+    </div>
+    <div class="col-xs-12 ">
+
+    </div>
+</div>
+@{
+    foreach (var item in Model.HisAccounts)
+    {
+        Html.RenderPartial("HisAccount", item);
+    }
+}
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.chUserID }) |
-    @Html.ActionLink("Back to List", "Index")*@
-    @Html.ActionLink("修改密碼", "ChangePassword", new {UserID=Model.chUserID })
+        @Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("修改密碼", "ChangePassword", new { UserID = Model.chUserID })
     <br />
-    @Html.ActionLink("回到首頁","Index")
+    @Html.ActionLink("回到首頁", "Index")
 
 </p>

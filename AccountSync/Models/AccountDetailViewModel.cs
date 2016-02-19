@@ -10,7 +10,7 @@ namespace AccountSync.Models
     {
 
         public string chUserID { get; set; }
-        [Display(Name="姓名")]
+        [Display(Name = "姓名")]
         public string chUserName { get; set; }
         [Display(Name = "單位")]
         public string chDeptName { get; set; }
@@ -31,5 +31,35 @@ namespace AccountSync.Models
         [Display(Name = "HIS密碼")]
         public string chHisXData { get; set; }
         public string chUserID10 { get; set; }
+        [Display(Name = "HIS帳號")]
+        public List<HisAccountViewModel> HisAccounts { get; set; }
+
+        public AccountDetailViewModel()
+        {
+            HisAccounts = new List<HisAccountViewModel>();
+        }
+
+    }
+
+    public class HisAccountViewModel
+    {
+        [Display(Name = "上網帳號")]
+        public string chUserID { get; set; }
+        [Display(Name = "密碼院區")]
+        public string chXDataHosp { get; set; }
+
+        [Display(Name = "HIS帳號")]
+        public string UserID { get; set; }
+        [Display(Name = "姓名")]
+        public string UserName { get; set; }
+        [Display(Name = "HIS密碼")]
+        public string chXData { get; set; }
+        [Display(Name = "是上網密碼？")]
+        public bool isRightPassword { get; set; }
+        public HisAccountViewModel()
+        {
+            isRightPassword = false;
+            chXData = "Empty";
+        }
     }
 }

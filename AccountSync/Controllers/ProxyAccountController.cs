@@ -99,36 +99,56 @@ namespace AccountSync.Controllers
                 AccountSync.Models.HISAccount.EFUnitOfWork hisUOW = new Models.HISAccount.EFUnitOfWork();
                 hisUOW.ConnectionString = connToHis;
                 HisAccountRepo = Models.HISAccount.RepositoryHelper.GetGenUserProfile1Repository(hisUOW);
-                var hisUser = HisAccountRepo.Where(w => (w.chUserID ==detail.chUserID10)).FirstOrDefault();
-                if (hisUser==null)
+                var hisUser = HisAccountRepo.Where(w => (w.chUserID == detail.chUserID10)).FirstOrDefault();
+                if (hisUser == null)
                 {
                     HisDoctorRepo = Models.HISAccount.RepositoryHelper.GetGenDoctorTblRepository(hisUOW);
-                    var hisDoctor = HisDoctorRepo.Where(w => (w.chIDNo == detail.chUserID10)).FirstOrDefault();
-                    if (hisDoctor==null)
+
+                    //拉出所有醫師代碼
+                    var hisDoctors = HisDoctorRepo.Where(w => (w.chIDNo == detail.chUserID10));
+                    foreach (var doctor in hisDoctors)
                     {
-                        detail.chHisXData = "HIS系統查不到帳號";
-                    }
-                    else
-                    {
-                        hisUser = HisAccountRepo.Where(w => (w.chUserID == hisDoctor.chDocNo)).FirstOrDefault();
-                        if (hisUser==null)
+                        var docAccount = new Models.HisAccountViewModel();
+                        docAccount.chUserID = detail.chUserID;
+                        docAccount.UserID = doctor.chDocNo;
+                        docAccount.UserName = doctor.chDocName;
+                        docAccount.isRightPassword = false;
+                        docAccount.chXData = "Empty";
+                        docAccount.chXDataHosp = detail.chXDataHosp;
+                        var docResult = HisAccountRepo.Where(w => w.chUserID == doctor.chDocNo).FirstOrDefault();
+                        if (docResult != null)
                         {
-                            detail.chHisXData = "HIS系統查不到帳號";
-                        }
-                        else
-                        {
-                            detail.chHisXData = hisUser.chXData;
+                            docAccount.chXData = docResult.chXData;
+                            if (docAccount.chXData == detail.chXData)
+                            {
+                                docAccount.isRightPassword = true;
+                            }
+                            else
+                            {
+                                docAccount.isRightPassword = false;
+                            }
+                            detail.HisAccounts.Add(docAccount);
                         }
                     }
+
                 }
                 else
                 {
-                    detail.chHisXData = hisUser.chXData;
+
+                    var hisAccount = new Models.HisAccountViewModel();
+                    hisAccount.chUserID = detail.chUserID;
+                    hisAccount.UserID = "非醫師";
+                    hisAccount.UserName = detail.chUserName;
+                    hisAccount.isRightPassword = detail.chXData == hisUser.chXData ? true : false;
+                    hisAccount.chXData = hisUser.chXData;
+                    hisAccount.chXDataHosp = detail.chUserID;
+
+                    detail.HisAccounts.Add(hisAccount);
                 }
             }
             else
             {
-                detail.chHisXData = "密碼不是來自特定院區";   
+                detail.chHisXData = "密碼不是來自特定院區";
             }
             //return View("AccountDetail", myAccount);
             return View("QueryResult", detail);
@@ -248,6 +268,31 @@ namespace AccountSync.Controllers
         public ActionResult QueryAccountList()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult CorrectionProxyPassword(Models.HisAccountViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Error");
+            }
+            try
+            {
+                var GenAccount = DB_GEN_Repo.Where(w => w.chUserID == model.chUserID).FirstOrDefault();
+                if (GenAccount != null)
+                {
+                    GenAccount.chXData = model.chXData;
+                    GenAccount.chXDataHosp = model.chXDataHosp;
+                    GenAccount.dtLastModified = DateTime.Now;
+                    DB_GEN_Repo.UnitOfWork.Commit();
+                }
+                return View("PasswordChanged");
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
         }
     }
 

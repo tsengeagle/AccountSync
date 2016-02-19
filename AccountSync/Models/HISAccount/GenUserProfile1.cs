@@ -17,25 +17,10 @@ namespace AccountSync.Models.HISAccount
         public string chUserID { get; set; }
         public string chUserPass { get; set; }
         public string chUserName { get; set; }
-        public string chUserOPD { get; set; }
-        public string chUserAMD { get; set; }
-        public string chUserMrbasic { get; set; }
-        public string chUserMeg { get; set; }
-        public string chUserGro { get; set; }
         public string chStartDate { get; set; }
         public string chEndDate { get; set; }
-        public string chLogInDT { get; set; }
-        public string chLogOutDT { get; set; }
-        public string chLogInStat { get; set; }
-        public string chUserSector { get; set; }
-        public string chUserAcc { get; set; }
-        public string chUserIPH { get; set; }
-        public string chUserRad { get; set; }
-        public string chOffStartDate { get; set; }
-        public string chOffEndDate { get; set; }
         public string chXData { get; set; }
         public string chRandomKey { get; set; }
-        public string chUserOtherKey { get; set; }
         public string chLastModifyID { get; set; }
         public Nullable<System.DateTime> sdLastModifyDate { get; set; }
     }

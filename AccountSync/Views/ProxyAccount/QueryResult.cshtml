@@ -1,0 +1,111 @@
+﻿@model AccountSync.Models.AccountDetailViewModel
+
+@{
+    ViewBag.Title = "查詢結果";
+}
+
+<h2>查詢結果</h2>
+
+<div>
+    <h4>個人帳號查詢</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chDeptName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chDeptName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chEMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chEMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtLastModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtLastModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chXDataHosp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chXDataHosp)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.chUserType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.chUserType)
+            </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.chXData)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chXData)
+        </dd>
+    </dl>
+</div>
+<div class="row text-center">
+    <div class="col-xs-12 col-sm-1">
+        @Html.DisplayNameFor(model => model.HisAccounts.FirstOrDefault().UserID)
+    </div>
+    <div class="col-xs-12 col-sm-1">
+        @Html.DisplayNameFor(model => model.HisAccounts.FirstOrDefault().UserName)
+    </div>
+    <div class="col-xs-12 col-sm-6 text-left">
+        @Html.DisplayNameFor(model => model.HisAccounts.FirstOrDefault().chXData)
+    </div>
+</div>
+
+@{
+    foreach (var item in Model.HisAccounts)
+    {
+        Html.RenderPartial("HisAccount", item);
+    }
+}
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.chUserID }) |
+        @Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("修改密碼", "ChangePassword", new { UserID = Model.chUserID })
+    <br />
+    @Html.ActionLink("回到首頁", "Index")
+
+</p>

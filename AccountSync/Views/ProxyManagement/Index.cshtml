@@ -1,0 +1,102 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model IPagedList<AccountSync.Models.ProxyAccountViewModel>
+
+@{
+    ViewBag.Title = "帳號總覽";
+}
+
+<h2>所有帳號</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+
+
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+<table class="table">
+    <tr>
+        <th>
+            重設密碼
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().isSynced)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().isEnabled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().UserID)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().DeptName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().NoteID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().dtEndDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("重置密碼", "ResetPassword", new { UserID = item.UserID })
+            </td>
+            <td>
+                @{
+        if (item.isSynced)
+        {
+            <span class="glyphicon glyphicon-ok"></span>
+        }
+        else
+        {
+            <span class="glyphicon glyphicon-remove"></span>
+        }
+                }
+            </td>
+            <td>
+                @{
+        if (item.isEnabled)
+        {
+            <span class="glyphicon glyphicon-ok"></span>
+        }
+        else
+        {
+            <span class="glyphicon glyphicon-remove"></span>
+        }
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoteID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtEndDate)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>

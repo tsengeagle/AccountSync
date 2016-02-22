@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "個人帳號查詢";
+}
+
+<h2>查詢首頁</h2>
+
+
+
+@using (Html.BeginForm("Query", "ProxyAccount"))
+{
+    <h4>帳號：</h4>
+    @Html.TextBox("UserID")
+
+    <input type="submit" name="query" value="查詢" />
+
+}
+
+
+
+

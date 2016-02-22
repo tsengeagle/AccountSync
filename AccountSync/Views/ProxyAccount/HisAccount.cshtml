@@ -1,0 +1,41 @@
+﻿@model AccountSync.Models.HisAccountViewModel
+
+
+@using (Html.BeginForm(new { action = "CorrectionProxyPassword" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.UserID)
+    @Html.HiddenFor(model => model.chUserID)
+    @Html.HiddenFor(model => model.chXData)
+    @Html.HiddenFor(model => model.chXDataHosp)
+    <div class="row text-center">
+        <div class="col-xs-12 col-sm-1">
+            @Html.DisplayFor(model => model.UserID)
+        </div>
+        <div class="col-xs-12 col-sm-1">
+            @Html.DisplayFor(model => model.UserName)
+        </div>
+        <div class="col-xs-12 col-sm-6 text-left">
+            @*@{
+                    if (Model.isRightPassword)
+                    {
+                        <span class="glyphicon glyphicon-ok"></span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-remove"></span>
+                    }
+                }*@
+            @Html.DisplayFor(model => model.chXData)
+            @{
+                if (!Model.isRightPassword)
+                {
+                    <input type="submit" value="用這個作為上網密碼" class="btn btn-default" />
+                }
+            }
+        </div>
+
+    </div>
+
+                }
+

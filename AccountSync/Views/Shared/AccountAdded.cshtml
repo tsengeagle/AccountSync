@@ -1,0 +1,15 @@
+﻿@model AccountSync.Models.NewAccountViewModel
+
+@{
+    ViewBag.Title = "帳號已新增";
+}
+
+
+<h4>您的帳號是：</h4>
+@Html.DisplayFor(m => m.UserID)
+
+<h4>預設密碼為上網帳號</h4>
+
+<h4>請盡快 @Html.ActionLink("修改密碼", "ChangePassword", new { UserID = Model.UserID })</h4>
+
+@Html.ActionLink("回到首頁", "Index")

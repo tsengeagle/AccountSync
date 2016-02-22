@@ -197,6 +197,21 @@
     <Compile Include="Models\DB_GEN\RepositoryIQueryableExtensions.cs">
       <DependentUpon>IRepository.EF6.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EMail\NotesMail.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NotesMail.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EMail\NotesMail.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NotesMail.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EMail\NotesMail.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NotesMail.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\HISAccount\EFGeneratePartialClass.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -322,6 +337,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\EMail\NotesMail.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NotesMail.edmx</DependentUpon>
+      <LastGenOutput>NotesMail.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\EMail\NotesMail.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NotesMail.edmx</DependentUpon>
+      <LastGenOutput>NotesMail.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -400,6 +425,13 @@
     <Content Include="Models\HISAccount\IRepository.EF6.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>IRepository.EF6.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\EMail\NotesMail.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NotesMail.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\EMail\NotesMail.edmx.diagram">
+      <DependentUpon>NotesMail.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\icapsvr1.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />

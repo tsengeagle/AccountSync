@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
@@ -97,7 +98,7 @@ namespace AccountSync.Controllers
 
             Random rand = new Random(DateTime.Now.Millisecond);
             string randPassword = "MF" + Convert.ToString(rand.Next(10000000, 99999999)).Substring(0, 4);
-            ViewData.Add("NewPassword", randPassword);
+            //ViewData.Add("NewPassword", randPassword);
 
             string NewPasswordMD5 = DB_GEN_Repo.GetMD5(randPassword); //DB_GEN.GetMD5(randPassword).First().ToUpper();
             myAccount.chXData = NewPasswordMD5;
@@ -125,7 +126,17 @@ namespace AccountSync.Controllers
             myMedProxyAccount.comment = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "; Reset by web";
             MedProxy_Repo.UnitOfWork.Commit(); // MedProxy.SaveChanges();
 
-            return View("PasswordReseted", myAccount);
+            var mailContent = new StringBuilder();
+            mailContent.AppendLine(string.Format("您的上網帳號:{0}", myAccount.chUserID));
+            mailContent.AppendLine(string.Format("已於{0}重置密碼", DateTime.Now.ToString()));
+            mailContent.AppendLine(string.Format("新密碼為:{0}", randPassword));
+            mailContent.AppendLine(string.Format("請盡快至右方連結變更密碼: {0}", @"http://10.2.0.173/AccountSync/ProxyAccount"));
+            
+            var email = new Models.EMail.EMailEntities();
+            email.SendMail(myAccount.chEMail, "", "曾義格法人資訊/medicine/tzuchi", "密碼已重置", mailContent.ToString());
+
+            return RedirectToAction("AccountList"); 
+
         }
 
         [Authorize]

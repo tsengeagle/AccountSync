@@ -101,13 +101,14 @@
         Html.RenderPartial("HisAccount", item);
     }
 }
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.chUserID }) |
-        @Html.ActionLink("Back to List", "Index")*@
-    @Html.ActionLink("重置密碼", "ResetPassword", new { UserID = Model.chUserID })
-    <br />
-    @Html.ActionLink("變更密碼", "ChangePassword", new { UserID = Model.chUserID })
-    <br />
-    @Html.ActionLink("回到首頁", "Index")
 
-</p>
+    <p class="lead">
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.chUserID }) |
+            @Html.ActionLink("Back to List", "Index")*@
+        @Html.ActionLink("重置密碼", "ResetPassword", new { UserID = Model.chUserID })
+        <br />
+        @Html.ActionLink("變更密碼", "ChangePassword", new { UserID = Model.chUserID })
+        <br />
+        @Html.ActionLink("回到首頁", "Index")
+
+    </p>

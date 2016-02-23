@@ -133,7 +133,7 @@ namespace AccountSync.Controllers
             mailContent.AppendLine(string.Format("請盡快至右方連結變更密碼: {0}", @"http://10.2.0.173/AccountSync/ProxyAccount"));
             
             var email = new Models.EMail.EMailEntities();
-            email.SendMail(myAccount.chEMail, "", "曾義格法人資訊/medicine/tzuchi", "密碼已重置", mailContent.ToString());
+            email.SendMail(myAccount.chEMail, "", "", "密碼已重置", mailContent.ToString());
 
             return RedirectToAction("AccountList"); 
 

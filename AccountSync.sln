@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagement", "Accoun
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AccountManagementDB", "AccountManagementDB\AccountManagementDB.sqlproj", "{48E46949-052A-460E-B207-760952E63C15}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HIS_DB_GEN", "HIS_DB_GEN\HIS_DB_GEN.sqlproj", "{B0E8DC2A-1BD7-430F-9831-486A3981242E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,12 @@ Global
 		{48E46949-052A-460E-B207-760952E63C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48E46949-052A-460E-B207-760952E63C15}.Release|Any CPU.Build.0 = Release|Any CPU
 		{48E46949-052A-460E-B207-760952E63C15}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B0E8DC2A-1BD7-430F-9831-486A3981242E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0E8DC2A-1BD7-430F-9831-486A3981242E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0E8DC2A-1BD7-430F-9831-486A3981242E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B0E8DC2A-1BD7-430F-9831-486A3981242E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0E8DC2A-1BD7-430F-9831-486A3981242E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0E8DC2A-1BD7-430F-9831-486A3981242E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

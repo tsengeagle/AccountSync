@@ -545,6 +545,7 @@
     <Content Include="Views\ProxyManagement\AccountList.cshtml" />
     <Content Include="Views\ProxyAccount\HisAccount.cshtml" />
     <Content Include="Views\ProxyAccount\TestView.cshtml" />
+    <Content Include="Views\Shared\EMailEmpty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

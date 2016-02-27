@@ -233,6 +233,12 @@ namespace AccountSync.Controllers
                 return View("AccountNotFound");
             }
 
+            if (myAccount.chEMail.Trim().Length == 0)
+            {
+                TempData["Message"] = string.Format("上網帳號{0}的信箱地址為空白，無法寄發新密碼通知信，取消密碼重置，請洽詢資訊室更正信箱地址",myAccount.chUserID);
+                return View("EMailEmpty");
+            }
+
             Random rand = new Random(DateTime.Now.Millisecond);
             string randPassword = "MF" + Convert.ToString(rand.Next(10000000, 99999999)).Substring(0, 4);
             //ViewData.Add("NewPassword", randPassword);
